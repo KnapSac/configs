@@ -1,0 +1,1 @@
+TortoiseGitProc.exe /command:repostatus /path:.
