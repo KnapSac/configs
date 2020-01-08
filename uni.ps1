@@ -1,2 +1,3 @@
-vs $traffic_tracer_sln_path
+cd $uni_dir
+vs $uni_sln_path
 mods
