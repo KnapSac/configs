@@ -1,4 +1,5 @@
 cd $uni_dir
-vs $uni_sln_path
+#vs $uni_sln_path
+code .
 start $browser$github_url
 mods
