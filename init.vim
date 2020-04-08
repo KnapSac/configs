@@ -1,11 +1,15 @@
 " General
 set shell=cmd.exe
-set nu
-set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
-let g:ale_linters = { 'javascript': ['eslint'] }
 let mapleader="\<Space>"
+set nu
+set colorcolumn=100
+set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
+
+" Hotkeys
 map <leader><leader> :bn<cr>
 map <C-s> :up<cr>
+map H <Home>
+map L <End>
 
 " Theme
 syntax on
@@ -19,25 +23,43 @@ map <C-e> :NERDTreeToggle<CR>
 let g:fzf_layout = { 'down': '~25%' }
 map <C-f> :Files<CR>
 
-" ncm2
-autocmd BufEnter * call ncm2#enable_for_buffer()
-set completeopt=noinsert,menuone,noselect
-inoremap <expr><Tab> (pumvisible()?(empty(v:completed_item)?"\<C-n>":"\<C-y>"):"\<Tab>")
-inoremap <expr><CR> (pumvisible()?(empty(v:completed_item)?"\<CR>\<CR>":"\<C-y>"):"\<CR>")
-
-" Linter
-let g:ale_sign_column_always = 1
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_lint_on_save = 0
-let g:ale_lint_on_enter = 1
-let g:ale_rust_cargo_use_check = 1
-let g:ale_rust_cargo_check_all_targets = 1
-
 " Rust
-let g:rustfmt_command = "rustfmt +nightly"
 let g:rustfmt_autosave = 1
 let g:rustfmt_emit_files = 1
 let g:rustfmt_fail_silently = 0
+
+" Permanent undo
+set undodir=~/.vimdid
+set undofile
+
+" Search
+set ignorecase
+set smartcase
+
+" https://github.com/jonhoo/configs/blob/master/editor/.config/nvim/init.vim 
+" Completion
+" Better display for messages
+set cmdheight=2
+" You will have bad experience for diagnostic messages when it's default 4000.
+set updatetime=300
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+    \ pumvisible() ? "\<C-n>" :
+    \ <SID>check_back_space() ? "\<TAB>" :
+    \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+" Use <c-.> to trigger completion.
+inoremap <silent><expr> <c-.> coc#refresh()
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+" inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" Or use `complete_info` if your vim support it, like:
+inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " ==================================================                                                 
 " Plugins
@@ -46,29 +68,22 @@ call plug#begin()
 
 " GUI enhancements
 Plug 'itchyny/lightline.vim'
-Plug 'w0rp/ale'
 Plug 'machakann/vim-highlightedyank'
 Plug 'crusoexia/vim-monokai'
 
-" Fuzzy Finder
+" File management
 Plug 'preservim/nerdtree'
 Plug 'airblade/vim-rooter'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
-" Language support
-Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'cmd install.sh' }
-Plug 'ncm2/ncm2'
-Plug 'roxma/nvim-yarp'
-Plug 'ncm2/ncm2-bufword'
-Plug 'ncm2/ncm2-path'
-Plug 'rust-lang/rust.vim'
+" Semantic language support
+Plug 'neoclide/coc.nvim'
+
+" Syntactic language support
 Plug 'cespare/vim-toml'
+Plug 'rust-lang/rust.vim'
 Plug 'Shougo/echodoc.vim'
 Plug 'vim-scripts/haskell.vim'
-
-" Javascript
-Plug 'pangloss/vim-javascript'
-Plug 'crusoexia/vim-javascript-lib'
-Plug 'ncm2/ncm2-tern',  {'do': 'npm install'}
+Plug 'godlygeek/tabular'
 call plug#end()
