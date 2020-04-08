@@ -1,7 +1,8 @@
 " General
 set shell=cmd.exe
 let mapleader="\<Space>"
-set nu
+set number
+set relativenumber
 set colorcolumn=100
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 
@@ -10,6 +11,22 @@ map <leader><leader> :bn<cr>
 map <C-s> :up<cr>
 map H <Home>
 map L <End>
+map q: :q
+
+nnoremap j gj
+nnoremap k gk
+
+nnoremap <left> :bp<CR>
+nnoremap <right> :bn<CR>
+
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+
+:autocmd InsertEnter,InsertLeave * set cul!
 
 " Theme
 syntax on
@@ -78,7 +95,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 " Semantic language support
-Plug 'neoclide/coc.nvim'
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 
 " Syntactic language support
 Plug 'cespare/vim-toml'
