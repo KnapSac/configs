@@ -17,5 +17,7 @@
             "gitDecoration.ignoredResourceForeground": "#aaaaaa",
             "sideBar.foreground": "#ffffff"
         }
-    }
+    },
+    "problems.showCurrentInStatus": true,
+    "git.enableStatusBarSync": false
 }
