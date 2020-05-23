@@ -1,1 +1,0 @@
-git --git-dir 'I:\Configs\' --work-tree ((Get-Location).Path + '\') $args
