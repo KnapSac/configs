@@ -1,3 +1,11 @@
+function Set-PoshGitSettings {
+    $GitPromptSettings.DefaultPromptPrefix.Text = '$(Get-Date -f "[HH:mm]") '
+    $GitPromptSettings.DefaultPromptPrefix.ForegroundColor = 'DarkGray'
+    $GitPromptSettings.DefaultPromptPath.ForegroundColor = 'Orange'
+    $GitPromptSettings.DefaultPromptBeforeSuffix.Text = '`n'
+    $GitPromptSettings.DefaultPromptAbbreviateGitDirectory = $True
+}
+
 function Show-Log {
     if (Test-Path ".\.git" -PathType Container) {
         git log --all --graph --decorate --oneline
