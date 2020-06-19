@@ -6,6 +6,10 @@ function Set-PoshGitSettings {
     $GitPromptSettings.DefaultPromptAbbreviateGitDirectory = $True
 }
 
+function Use-ShortGit {
+    git $args
+}
+
 function Show-Log {
     if (Test-Path ".\.git" -PathType Container) {
         git log --all --graph --decorate --oneline
@@ -34,23 +38,6 @@ function Show-Modifications {
     }
 }
 
-function Show-GitStatus {
-    if (Test-Path ".\.git" -PathType Container) {
-        git status
-    }
-    else {
-        Write-Output "This directory is not a Git repository"
-    }
-}
-
-function New-GitCommit {
-    git commit $args
-}
-
-function New-GitPush {
-    git push $args
-}
-
 function Start-VisualStudio {
     param([String]$sln = "")
 
@@ -68,10 +55,6 @@ function Start-NeoVim {
 
 function Update-NeoVim {
     nvim +PlugInstall +qa
-}
-
-function Show-DirectoryCmd { 
-    cmd /r dir $args 
 }
 
 function New-File { 
