@@ -1,6 +1,6 @@
 function Set-PoshGitSettings {
     $GitPromptSettings.DefaultPromptPrefix.Text = '$(Get-Date -f "[HH:mm]") '
-    $GitPromptSettings.DefaultPromptPrefix.ForegroundColor = 'DarkGray'
+    $GitPromptSettings.DefaultPromptPrefix.ForegroundColor = 'LightBlue'
     $GitPromptSettings.DefaultPromptPath.ForegroundColor = 'Orange'
     $GitPromptSettings.DefaultPromptBeforeSuffix.Text = '`n'
     $GitPromptSettings.DefaultPromptAbbreviateGitDirectory = $True
