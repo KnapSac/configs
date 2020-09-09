@@ -39,13 +39,22 @@ function Show-Modifications {
 }
 
 function Start-VisualStudio {
-    param([String]$sln = "")
+    param(
+        [String]$Solution = "",
+        [String]$Version = "2017"
+    )
 
-    if ($sln) {
-        Start-Process -FilePath $vs_path -ArgumentList $sln -Verb RunAs
+    if ($Version -eq "2019") {
+        $VsPath = "${Env:ProgramFiles(x86)}\Microsoft Visual Studio\2019\Community\Common7\IDE\devenv.exe"
+    } else {
+        $VsPath = "${Env:ProgramFiles(x86)}\Microsoft Visual Studio\2017\Professional\Common7\IDE\devenv.exe"
+    }
+
+    if ($Solution) {
+        Start-Process -FilePath $VsPath -ArgumentList $Solution -Verb RunAs
     }
     else {
-        Start-Process -FilePath $vs_path -Verb RunAs
+        Start-Process -FilePath $VsPath -Verb RunAs
     }
 }
 
