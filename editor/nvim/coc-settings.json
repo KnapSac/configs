@@ -40,6 +40,5 @@
   "python.jediEnabled": false,
   "python.analysis.disabled": [
     "unresolved-import"
-  ],
-  "rust-analyzer.cargo-watch.enable": false
+  ]
 }
