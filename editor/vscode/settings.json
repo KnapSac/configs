@@ -1,47 +1,43 @@
 {
-    "html.format.indentInnerHtml": true,
-    "html.format.extraLiners": "",
-    "editor.fontFamily": "'Cascadia Code PL', Consolas, 'Courier New', monospace",
-    "editor.fontLigatures": true,
-    "explorer.confirmDelete": false,
-    "editor.formatOnSave": true,
-    "workbench.colorTheme": "★★★★★ GRUVBOX ★★",
-    "workbench.startupEditor": "newUntitledFile",
-    "editor.wordWrapColumn": 100,
-    "editor.accessibilitySupport": "off",
-    "editor.minimap.enabled": false,
-    "editor.folding": false,
-    "editor.renderWhitespace": "all",
-    "workbench.colorCustomizations": {
-        "[Cobalt2]": {
-            "gitDecoration.ignoredResourceForeground": "#aaaaaa",
-            "sideBar.foreground": "#ffffff"
-        }
-    },
-    "problems.showCurrentInStatus": true,
-    "git.enableStatusBarSync": false,
-    "files.associations": {
-        "*.config": "ini"
-    },
-    "editor.renderControlCharacters": true,
-    "editor.lineNumbers": "relative",
-    "vim.insertModeKeyBindingsNonRecursive": [
-        {
-            "before": [
-                "j",
-                "j"
-            ],
-            "after": [
-                "<Esc>"
-            ]
-        }
-    ],
-    "extensions.ignoreRecommendations": false,
-    "todohighlight.keywords": [
-        "TODO (CV)",
-    ],
-    "todohighlight.defaultStyle": {
-        "color": "#d65d0e",
-        "backgroundColor": ""
+  "html.format.indentInnerHtml": true,
+  "html.format.extraLiners": "",
+  "editor.fontFamily": "'Cascadia Code PL', Consolas, 'Courier New', monospace",
+  "editor.fontLigatures": true,
+  "explorer.confirmDelete": false,
+  "editor.formatOnSave": true,
+  "workbench.colorTheme": "★★★★★ GRUVBOX ★★",
+  "workbench.startupEditor": "newUntitledFile",
+  "editor.wordWrapColumn": 100,
+  "editor.accessibilitySupport": "off",
+  "editor.minimap.enabled": false,
+  "editor.folding": false,
+  "editor.renderWhitespace": "all",
+  "problems.showCurrentInStatus": true,
+  "git.enableStatusBarSync": false,
+  "files.associations": {
+    "*.config": "ini"
+  },
+  "editor.renderControlCharacters": true,
+  "editor.lineNumbers": "relative",
+  "vim.insertModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "j",
+        "j"
+      ],
+      "after": [
+        "<Esc>"
+      ]
     }
+  ],
+  "extensions.ignoreRecommendations": false,
+  "todohighlight.keywords": [
+    "TODO CV",
+    "TODO(CV)",
+    "TODO (CV)"
+  ],
+  "todohighlight.defaultStyle": {
+    "color": "#d65d0e",
+    "backgroundColor": ""
+  }
 }
