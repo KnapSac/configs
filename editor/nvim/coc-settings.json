@@ -1,0 +1,45 @@
+{
+  "languageserver": {
+    "haskell": {
+      "command": "haskell-language-server-wrapper",
+      "args": [
+        "--lsp"
+      ],
+      "rootPatterns": [
+        "*.cabal",
+        "stack.yaml",
+        "cabal.project",
+        "package.yaml",
+        "hie.yaml"
+      ],
+      "filetypes": [
+        "hs",
+        "lhs",
+        "haskell",
+        "lhaskell"
+      ],
+      "initializationOptions": {
+        "haskell": {}
+      }
+    }
+  },
+  "coc.preferences.formatOnSaveFiletypes": [
+    "javascript",
+    "typescript",
+    "typscriptreact",
+    "typescript.tsx",
+    "json"
+  ],
+  "typescript.suggest.autoImports": true,
+  "eslint.filetypes": [
+    "javascript",
+    "typescript",
+    "typscriptreact",
+    "typescript.tsx"
+  ],
+  "python.jediEnabled": false,
+  "python.analysis.disabled": [
+    "unresolved-import"
+  ],
+  "rust-analyzer.cargo-watch.enable": false
+}
