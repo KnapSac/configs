@@ -16,7 +16,7 @@ Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 
 " fzf
 Plug 'airblade/vim-rooter'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 " Semantic language support
@@ -31,6 +31,7 @@ Plug 'PProvost/vim-ps1'
 Plug 'vim-python/python-syntax'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'alx741/vim-hindent'
+Plug 'sdiehl/vim-ormolu'
 "Plug 'alx741/vim-stylishask'
 
 call plug#end()
@@ -52,7 +53,7 @@ set autoread
 set encoding=utf-8
 set mouse=a
 
-autocmd BufNewFile,BufEnter,BufRead *.hs,*.json set shiftwidth=2 
+autocmd BufNewFile,BufEnter,BufRead *.hs,*.json,*.ts,*.tsx set shiftwidth=2
 :autocmd InsertEnter,InsertLeave * set cul!
 au BufRead,BufNewFile *.tsx set filetype=typescript.tsx
 
@@ -115,6 +116,10 @@ nmap <silent> gr <Plug>(coc-references)
 
 " Symbol renaming
 nmap <leader>rn <Plug>(coc-rename)
+
+" Formatting selected code
+xmap <leader>f <Plug>(coc-format-selected)
+nmap <leader>f <Plug>(coc-format-selected)
 
 " ----- Plugin Settings -----
 " haskell-vim
@@ -193,3 +198,6 @@ let g:lightline = {
 
 " Use autocmd to force lightline update
 autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
+
+" ormolu
+let g:ormolu_suppress_stderr=1
