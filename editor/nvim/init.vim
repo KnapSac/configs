@@ -121,6 +121,11 @@ nmap <leader>rn <Plug>(coc-rename)
 xmap <leader>f <Plug>(coc-format-selected)
 nmap <leader>f <Plug>(coc-format-selected)
 
+" autoclosing
+inoremap { {}<left>
+inoremap {<CR> {<CR>}<ESC>O
+inoremap {;<CR> {<CR>};<ESC>O}}}])'"
+
 " ----- Plugin Settings -----
 " haskell-vim
 let g:haskell_classic_highlighting = 1
