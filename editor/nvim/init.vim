@@ -12,10 +12,10 @@ Plug 'preservim/nerdtree'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
+Plug 'airblade/vim-rooter'
 Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 
 " fzf
-Plug 'airblade/vim-rooter'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
@@ -155,8 +155,9 @@ let g:python_highlight_all = 1
 map <C-e> :NERDTreeToggle<CR>
 
 " fzf
-let g:fzf_layout = { 'down': '~25%' }
-"let $FZF_DEFAULT_COMMAND = 'ag -g "" '
+"let g:fzf_layout = { 'down': '~25%' }
+let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
+let $FZF_DEFAULT_OPTS='--reverse'
 map <C-f> :Files<CR>
 
 " Rust
