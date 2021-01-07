@@ -207,3 +207,8 @@ autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 
 " ormolu
 let g:ormolu_suppress_stderr=1
+
+" fugitive
+nmap <leader>gs :G<CR>
+nmap <leader>gj :diffget //3<CR>
+nmap <leader>gf :diffget //2<CR>
