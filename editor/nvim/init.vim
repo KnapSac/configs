@@ -82,6 +82,19 @@ set formatoptions+=q " enable formatting of comments with gq
 set formatoptions+=n " detect lists for formatting
 set formatoptions+=b " auto-wrap in insert mode, and do not wrap old long lines
 
+" https://github.com/awesome-streamers/awesome-streamerrc/blob/master/ThePrimeagen/init.vim
+" Remove whitespace
+fun! TrimWhitespace()
+    let l:save = winsaveview()
+    keeppatterns %s/\s\+$//e
+    call winrestview(l:save)
+endfun
+
+augroup KNAPSAC
+    autocmd!
+    autocmd BufWritePre * :call TrimWhitespace()
+augroup END
+
 " ----- Appearance -----
 colorscheme gruvbox
 set background=dark
