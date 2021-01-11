@@ -101,6 +101,7 @@ augroup END
 
 " ----- Appearance -----
 colorscheme gruvbox
+let g:gruvbox_contrast_dark = 'hard'
 set background=dark
 syntax on
 filetype plugin indent on
