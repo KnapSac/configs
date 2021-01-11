@@ -146,6 +146,10 @@ inoremap { {}<left>
 inoremap {<CR> {<CR>}<ESC>O
 inoremap {;<CR> {<CR>};<ESC>O}}}])'"
 
+" yanking
+nnoremap <leader>y "+y
+vnoremap <leader>y "+y
+
 " ----- Plugin Settings -----
 " haskell-vim
 let g:haskell_classic_highlighting = 1
@@ -185,7 +189,7 @@ let g:rustfmt_autosave = 1
 let g:rustfmt_emit_files = 1
 let g:rustfmt_fail_silently = 0
 
-" https://github.com/jonhoo/configs/blob/master/editor/.config/nvim/init.vim 
+" https://github.com/jonhoo/configs/blob/master/editor/.config/nvim/init.vim
 " Completion
 " Better display for messages
 " You will have bad experience for diagnostic messages when it's default 4000.
