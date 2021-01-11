@@ -44,6 +44,7 @@ set hidden
 set noerrorbells
 set smartindent
 set nobackup
+set noswapfile
 let mapleader="\<Space>"
 set colorcolumn=100
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
@@ -68,6 +69,7 @@ set ignorecase
 set smartcase
 set gdefault
 set incsearch
+set nohlsearch
 
 " Quick-save
 nmap <leader>w :w<CR>
