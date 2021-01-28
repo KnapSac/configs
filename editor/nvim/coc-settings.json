@@ -40,5 +40,6 @@
   "python.jediEnabled": false,
   "python.analysis.disabled": [
     "unresolved-import"
-  ]
+  ],
+  "rust-analyzer.inlayHints.enable": false
 }

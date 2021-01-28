@@ -141,6 +141,9 @@ nmap <leader>rn <Plug>(coc-rename)
 xmap <leader>f <Plug>(coc-format-selected)
 nmap <leader>f <Plug>(coc-format-selected)
 
+" actions
+nmap <leader>a :CocAction<CR>
+
 " autoclosing
 inoremap { {}<left>
 inoremap {<CR> {<CR>}<ESC>O
