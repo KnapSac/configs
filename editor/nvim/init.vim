@@ -96,7 +96,7 @@ endfun
 
 augroup KNAPSAC
     autocmd!
-    autocmd BufWritePre * :call TrimWhitespace()
+    autocmd BufWritePre *[^.md] :call TrimWhitespace()
 augroup END
 
 " ----- Appearance -----
