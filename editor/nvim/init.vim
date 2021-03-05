@@ -13,10 +13,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 
-" fzf
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-
+" telescope
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
@@ -35,11 +32,12 @@ Plug 'vim-python/python-syntax'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'alx741/vim-hindent'
 Plug 'sdiehl/vim-ormolu'
-"Plug 'alx741/vim-stylishask'
 
 call plug#end()
 
 " ----- General -----
+lua require("knapsac");
+
 set relativenumber
 set number
 set noshowmatch
@@ -172,11 +170,10 @@ let g:python_highlight_all = 1
 " NERDTree
 map <C-e> :NERDTreeToggle<CR>
 
-" fzf
-"let g:fzf_layout = { 'down': '~25%' }
-let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
-let $FZF_DEFAULT_OPTS='--reverse'
-map <C-f> :Files<CR>
+" telescope
+"map <C-f> :lua require('telescope.builtin').find_files()<CR>
+map <C-f> :lua require('telescope.builtin').git_files()<CR>
+nnoremap <leader>/ :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<CR>
 
 " Rust
 let g:rustfmt_autosave = 1
@@ -230,6 +227,3 @@ let g:ormolu_suppress_stderr=1
 nmap <leader>gs :G<CR>
 nmap <leader>gj :diffget //3<CR>
 nmap <leader>gf :diffget //2<CR>
-
-" telescope
-nnoremap <leader>ps :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<CR>
