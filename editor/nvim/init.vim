@@ -59,7 +59,7 @@ set autoread
 set encoding=utf-8
 set mouse=a
 
-autocmd BufNewFile,BufEnter,BufRead *.hs,*.json,*.ts,*.tsx set shiftwidth=2
+autocmd BufNewFile,BufEnter,BufRead *.hs,*.json,*.ts,*.tsx,*.js,*.jsx set shiftwidth=2
 :autocmd InsertEnter,InsertLeave * set cul!
 au BufRead,BufNewFile *.tsx set filetype=typescript.tsx
 
