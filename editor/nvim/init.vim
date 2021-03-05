@@ -58,9 +58,8 @@ set cmdheight=2
 set autoread
 set encoding=utf-8
 set mouse=a
-"set shell=pwsh
 
-autocmd BufNewFile,BufEnter,BufRead *.hs,*.json,*.ts,*.tsx,*.js,*.jsx set shiftwidth=2
+autocmd BufNewFile,BufEnter,BufRead *.hs,*.json,*.ts,*.tsx set shiftwidth=2
 :autocmd InsertEnter,InsertLeave * set cul!
 au BufRead,BufNewFile *.tsx set filetype=typescript.tsx
 
@@ -116,7 +115,6 @@ map <C-s> :up<cr>
 map H ^
 map L $
 map q: :q
-map :Bd :bd
 
 nnoremap j gj
 nnoremap k gk
@@ -148,18 +146,15 @@ nmap <leader>f <Plug>(coc-format-selected)
 nmap <leader>a :CocAction<CR>
 
 " autoclosing
-"inoremap { {}<left>
-"inoremap {<CR> {<CR>}<ESC>O
-"inoremap {;<CR> {<CR>};<ESC>O}}}])'"
+inoremap { {}<left>
+inoremap {<CR> {<CR>}<ESC>O
+inoremap {;<CR> {<CR>};<ESC>O}}}])'"
 
 " yanking
 nnoremap <leader>y "+y
 vnoremap <leader>y "+y
 
 " ----- Plugin Settings -----
-" vim-rooter
-let g:rooter_patterns = ['=src']
-
 " haskell-vim
 let g:haskell_classic_highlighting = 1
 let g:haskell_enable_quantification = 1
@@ -178,26 +173,8 @@ let g:haskell_indent_let_no_in = 0
 let g:hindent_on_save = 0
 
 " firenvim
-let g:firenvim_config = {
-    \ 'globalSettings': {
-        \ 'alt': 'all',
-    \  },
-    \ 'localSettings': {
-        \ '.*': {
-            \ 'cmdline': 'neovim',
-            \ 'content': 'text',
-            \ 'priority': 0,
-            \ 'selector': 'textarea',
-            \ 'takeover': 'never',
-        \ },
-    \ }
-\ }
-
-let fc = g:firenvim_config['localSettings']
-let fc['https?://github.com'] = { 'takeover': 'always', 'priority': 1 }
-let fc['https?://dev.azure.com'] = { 'takeover': 'always', 'priority': 1 }
-
 au BufEnter github.com_*.txt set filetype=markdown
+au BufEnter txti.es*.txt set filetype=typescript
 
 " Python
 let g:python_highlight_all = 1
