@@ -12,8 +12,6 @@ Plug 'preservim/nerdtree'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
-Plug 'airblade/vim-rooter'
-Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 
 " fzf
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -167,10 +165,6 @@ let g:haskell_indent_let_no_in = 0
 
 " hindent
 let g:hindent_on_save = 0
-
-" firenvim
-au BufEnter github.com_*.txt set filetype=markdown
-au BufEnter txti.es*.txt set filetype=typescript
 
 " Python
 let g:python_highlight_all = 1
