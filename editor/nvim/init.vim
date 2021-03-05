@@ -146,11 +146,6 @@ nmap <leader>f <Plug>(coc-format-selected)
 " actions
 nmap <leader>a :CocAction<CR>
 
-" autoclosing
-inoremap { {}<left>
-inoremap {<CR> {<CR>}<ESC>O
-inoremap {;<CR> {<CR>};<ESC>O}}}])'"
-
 " yanking
 nnoremap <leader>y "+y
 vnoremap <leader>y "+y
