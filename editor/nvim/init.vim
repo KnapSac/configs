@@ -173,7 +173,7 @@ map <C-e> :NERDTreeToggle<CR>
 " telescope
 "map <C-f> :lua require('telescope.builtin').find_files()<CR>
 map <C-f> :lua require('telescope.builtin').git_files()<CR>
-nnoremap <leader>/ :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<CR>
+nnoremap <leader>/ :lua require('telescope.builtin').grep_string()<CR>
 
 " Rust
 let g:rustfmt_autosave = 1
