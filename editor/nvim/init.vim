@@ -115,6 +115,7 @@ map <C-s> :up<cr>
 map H ^
 map L $
 map q: :q
+map :Bd :bd
 
 nnoremap j gj
 nnoremap k gk
