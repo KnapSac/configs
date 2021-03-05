@@ -41,5 +41,8 @@
   "python.analysis.disabled": [
     "unresolved-import"
   ],
-  "rust-analyzer.inlayHints.enable": false
+  "rust-analyzer.inlayHints.enable": false,
+  "rust-analyzer.inlayHints.refreshOnInsertMode": false,
+  "rust-analyzer.cargo.loadOutDirsFromCheck": true,
+  "rust-analyzer.procMacro.enable": true
 }
