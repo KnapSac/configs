@@ -132,6 +132,10 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
+" diagnostics
+nmap <leader>n <Plug>(coc-diagnostic-next)
+nmap <leader>p <Plug>(coc-diagnostic-prev)
+
 " Symbol renaming
 nmap <leader>rn <Plug>(coc-rename)
 
