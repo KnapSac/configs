@@ -1,0 +1,49 @@
+[alias]
+#Checking current state
+  s        = status
+  ss       = status -s
+#Committing changes
+  c        = commit
+  cm       = commit -m
+  ca       = commit -a
+  cam      = commit -am
+  a        = add
+  aa       = add .
+  unstage  = reset HEAD --
+#Branching
+  co       = checkout
+  br       = branch
+  bc       = checkout -b
+  bd       = branch -d
+  bl       = branch -v
+  blv      = branch -vv
+  rh = reset --hard
+#Remoting
+  p        = push
+  pp       = pull
+  r        = remote -v
+  rls      = remote show
+  rp       = remote prune
+#Checking history
+  last     = log -1 HEAD
+  rl       = reflog
+  l = log --pretty='%C(yellow)%h%Creset %Cblue%ad%Creset %Cgreen%an%Creset%C(cyan)%d%Creset %s' -30 --date=format:'%d-%m-%y %R'
+  lm = log --pretty='%C(yellow)%h%Creset %Cblue%ad%Creset %Cgreen%an%Creset%C(cyan)%d%Creset %s' -30 --no-merges --date=format:'%d-%m-%y %R'
+  ll = log --graph --decorate --oneline -30
+  llm = log --graph --decorate --oneline -30 --no-merges
+#General
+  alias    = config --get-regexp ^alias\\.
+[core]
+  editor = nvim
+  whitespace = cr-at-eol
+  autocrlf = false
+[diff]
+  tool = "winmerge"
+[difftool "winmerge"]
+  name = "WinMerge"
+  trustexitcode = true
+  cmd = \"'C:\\Program Files\\WinMerge\\WinMergeU.exe'\" -u -e \"$LOCAL\" \"$REMOTE\"
+[commit]
+  gpgsign = true
+[gpg]
+  program = C:\\Program Files (x86)\\GnuPG\\bin\\gpg.exe
