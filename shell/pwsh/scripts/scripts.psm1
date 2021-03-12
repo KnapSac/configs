@@ -68,3 +68,7 @@ function Set-LocationToDownloads {
 function Start-XServer {
     & I:\Utils\VcXsrv\vcxsrv.exe -multiwindow -ac
 }
+
+function Show-EnvVars {
+    cmd /c set
+}
