@@ -60,3 +60,11 @@ function New-File {
 function Remove-RecurseForce {
     Remove-Item -Recurse -Force $args
 }
+
+function Set-LocationToDownloads {
+    Set-Location "${Env:USERPROFILE}\Downloads"
+}
+
+function Start-XServer {
+    & I:\Utils\VcXsrv\vcxsrv.exe -multiwindow -ac
+}
