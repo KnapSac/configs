@@ -56,3 +56,7 @@ function New-File {
 
     Out-File -force -FilePath $FileName
 }
+
+function Remove-RecurseForce {
+    Remove-Item -Recurse -Force $args
+}
