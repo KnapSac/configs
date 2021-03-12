@@ -55,6 +55,8 @@ set autoread
 set encoding=utf-8
 set mouse=a
 
+autocmd Filetype gitcommit setlocal spell tw=72 colorcolumn=73
+
 autocmd BufNewFile,BufEnter,BufRead *.hs,*.json,*.ts,*.tsx,*.js,*.jsx set shiftwidth=2
 :autocmd InsertEnter,InsertLeave * set cul!
 au BufRead,BufNewFile *.tsx set filetype=typescript.tsx
