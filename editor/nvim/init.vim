@@ -60,6 +60,7 @@ autocmd Filetype gitcommit setlocal spell tw=72 colorcolumn=73
 autocmd BufNewFile,BufEnter,BufRead *.hs,*.json,*.ts,*.tsx,*.js,*.jsx set shiftwidth=2
 :autocmd InsertEnter,InsertLeave * set cul!
 au BufRead,BufNewFile *.tsx set filetype=typescript.tsx
+au BufRead,BufNewFile *.asm set filetype=masm
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
