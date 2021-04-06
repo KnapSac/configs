@@ -72,3 +72,8 @@ function Start-XServer {
 function Show-EnvVars {
     cmd /c set
 }
+
+function Get-ProcessWorkingDirectory {
+    $PathInfo = Get-Location
+    $PathInfo.Path
+}

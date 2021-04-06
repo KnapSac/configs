@@ -9,4 +9,7 @@ New-Alias -Name upvim -Value Update-NeoVim
 New-Alias -Name vs -Value Start-VisualStudio
 New-Alias -Name xserv -Value Start-XServer
 
+# Override default `pwd` alias to exclude header
+Set-Alias -Name pwd -Value Get-ProcessWorkingDirectory
+
 Export-ModuleMember -Alias *
