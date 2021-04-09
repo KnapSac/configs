@@ -37,13 +37,3 @@
   editor = nvim
   whitespace = cr-at-eol
   autocrlf = false
-[diff]
-  tool = "winmerge"
-[difftool "winmerge"]
-  name = "WinMerge"
-  trustexitcode = true
-  cmd = \"'C:\\Program Files\\WinMerge\\WinMergeU.exe'\" -u -e \"$LOCAL\" \"$REMOTE\"
-[commit]
-  gpgsign = true
-[gpg]
-  program = C:\\Program Files (x86)\\GnuPG\\bin\\gpg.exe
