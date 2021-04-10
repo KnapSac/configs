@@ -8,7 +8,7 @@
   ca       = commit -a
   cam      = commit -am
   a        = add
-  aa       = add ..
+  aa       = add .
   unstage  = reset HEAD --
 #Branching
   co       = checkout
