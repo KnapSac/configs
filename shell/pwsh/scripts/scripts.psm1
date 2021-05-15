@@ -77,3 +77,7 @@ function Get-ProcessWorkingDirectory {
     $PathInfo = Get-Location
     $PathInfo.Path
 }
+
+function Start-NpmWithHttps {
+    cmd /c "set HTTPS=true&&npm start"
+}
