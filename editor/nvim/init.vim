@@ -94,11 +94,6 @@ fun! TrimWhitespace()
     call winrestview(l:save)
 endfun
 
-augroup KNAPSAC
-    autocmd!
-    autocmd BufWritePre *[^.md] :call TrimWhitespace()
-augroup END
-
 " ----- Appearance -----
 colorscheme gruvbox
 let g:gruvbox_contrast_dark = 'hard'
