@@ -42,6 +42,5 @@
     "unresolved-import"
   ],
   "rust-analyzer.inlayHints.enable": false,
-  "rust-analyzer.cargo.loadOutDirsFromCheck": true,
-  "rust-analyzer.procMacro.enable": true
+  "rust-analyzer.cargo.loadOutDirsFromCheck": true
 }
