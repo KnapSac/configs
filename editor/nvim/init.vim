@@ -119,6 +119,9 @@ nnoremap <right> :bn<CR>
 " undo tree
 nmap <leader>u :MundoToggle<CR>
 
+" use jj to exit terminal input mode
+:tnoremap jj <C-\><C-n>
+
 " indent with only 2 spaces
 autocmd BufNewFile,BufEnter,BufRead *.hs,*.json,*.ts,*.tsx,*.js,*.jsx set shiftwidth=2
 
