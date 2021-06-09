@@ -1,4 +1,4 @@
-" ----- Plugins -----
+" Plugins
 call plug#begin()
 
 " Visual enhancements
@@ -8,10 +8,12 @@ Plug 'morhetz/gruvbox'
 
 " General
 Plug 'editorconfig/editorconfig-vim'
-Plug 'preservim/nerdtree'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-surround'
+Plug 'simnalamburt/vim-mundo'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
 
 " telescope
 Plug 'nvim-lua/popup.nvim'
@@ -23,15 +25,15 @@ Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 
 " Syntactic language support
-Plug 'maxmellon/vim-jsx-pretty'
-Plug 'cespare/vim-toml'
-Plug 'stephpy/vim-yaml'
-Plug 'rust-lang/rust.vim'
-Plug 'PProvost/vim-ps1'
-Plug 'vim-python/python-syntax'
-Plug 'neovimhaskell/haskell-vim'
 Plug 'alx741/vim-hindent'
+Plug 'cespare/vim-toml'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'neovimhaskell/haskell-vim'
+Plug 'PProvost/vim-ps1'
+Plug 'rust-lang/rust.vim'
 Plug 'sdiehl/vim-ormolu'
+Plug 'stephpy/vim-yaml'
+Plug 'vim-python/python-syntax'
 
 call plug#end()
 
