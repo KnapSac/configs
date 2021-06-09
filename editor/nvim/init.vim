@@ -8,9 +8,9 @@ Plug 'morhetz/gruvbox'
 
 " General
 Plug 'editorconfig/editorconfig-vim'
+Plug 'godlygeek/tabular'
 Plug 'simnalamburt/vim-mundo'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
@@ -37,49 +37,40 @@ Plug 'vim-python/python-syntax'
 
 call plug#end()
 
-" ----- General -----
+" General
 lua require("knapsac");
 
-set relativenumber
-set number
-set noshowmatch
-set hidden
-set noerrorbells
-set smartindent
-set nobackup
-set noswapfile
-let mapleader="\<Space>"
-set colorcolumn=100
-set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
-set signcolumn=yes
-set cmdheight=2
-set autoread
-set encoding=utf-8
-set mouse=a
-set tw=100
+syntax on                            " enable syntax highlighting
+colorscheme gruvbox                  " use `gruvbox` if possible
+let g:gruvbox_contrast_dark = 'hard' " use hard contrast
+set background=dark                  " dark-mode is best
+filetype plugin on                   " load plugins based on filetype
+filetype indent on                   " load indent settings based on filetype
+set relativenumber                   " show relative line numbers
+set number                           " show line numbers
+set noshowmatch                      " don't auto jump to matching closing bracket
+set hidden                           " allow unsaved buffers to be hidden
+set visualbell                       " visual bell = no sounds
+set undofile                         " store undo info in a file
+set undodir=~/.vimdid                " where to store undo info
+set autoindent                       " copy indent from previous line
+set smartindent                      " automatically indent
+set shiftwidth=4                     " number of spaces to use for indneting
+set softtabstop=4                    " number of spaces to use when inserting a tab
+set tabstop=4                        " show tabs as 4 spaces
+set expandtab                        " convert tabs into spaces
+set signcolumn=yes                   " always show the signcolumn
+set colorcolumn=100                  " show the colorcolumn at column 100
+set textwidth=100                    " wrap lines after 100 characters
+set mouse=a                          " enable mouse support in all modes
+set ignorecase                       " search case-insensitively...
+set smartcase                        " ...unless uppercase characters are used
+set incsearch                        " show current match while searching
+set nohlsearch                       " don't highlight search results after search is finished
+set notimeout                        " disable timeout for finishing a mapping key sequence
+set updatetime=300                   " quicker diagnostic messages
 
-autocmd Filetype gitcommit setlocal spell tw=72 colorcolumn=73
-
-autocmd BufNewFile,BufEnter,BufRead *.hs,*.json,*.ts,*.tsx,*.js,*.jsx set shiftwidth=2
-:autocmd InsertEnter,InsertLeave * set cul!
-au BufRead,BufNewFile *.tsx set filetype=typescript.tsx
-au BufRead,BufNewFile *.asm set filetype=masm
-
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-
-" Permanent undo
-set undodir=~/.vimdid
-set undofile
-
-" Search
-set ignorecase
-set smartcase
-set gdefault
-set incsearch
-set nohlsearch
-
-" Quick-save
-nmap <leader>w :w<CR>
+let mapleader="\<Space>" " set <space> as the leader for mappings
 
 " https://github.com/jonhoo/configs/blob/master/editor/.config/nvim/init.vim
 " Wrapping
@@ -89,69 +80,62 @@ set formatoptions+=q " enable formatting of comments with gq
 set formatoptions+=n " detect lists for formatting
 set formatoptions+=b " auto-wrap in insert mode, and do not wrap old long lines
 
+" quicker saving
+nmap <leader>w :w<CR>
+
+" easier exiting of insert mode
+imap jj <Esc>
+
+" git mappings/settings
+nmap <leader>gb :Git blame<CR>
+nmap <leader>gs :Git<CR>
+nmap <leader>gc :Git commit<CR>
+nmap <leader>gph :Git push<CR>
+nmap <leader>gpl :Git pull<CR>
+autocmd Filetype gitcommit setlocal spell tw=72 colorcolumn=73
+
+" code navigation
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" code actions
+nmap <leader>n <Plug>(coc-diagnostic-next)
+nmap <leader>p <Plug>(coc-diagnostic-prev)
+nmap <leader>f <Plug>(coc-format-selected)
+nmap <leader>a :CocAction<CR>
+
+" yanking
+nmap <leader>y "+y
+vmap <leader>y "+y
+
+" buffer and window mappings
+map <leader><leader> :bn<cr>
+map <C-s> :up<cr>
+nnoremap <left> :bp<CR>
+nnoremap <right> :bn<CR>
+
+" undo tree
+nmap <leader>u :MundoToggle<CR>
+
+" indent with only 2 spaces
+autocmd BufNewFile,BufEnter,BufRead *.hs,*.json,*.ts,*.tsx,*.js,*.jsx set shiftwidth=2
+
+" file types
+au BufRead,BufNewFile *.tsx set filetype=typescript.tsx
+au BufRead,BufNewFile *.asm set filetype=masm
+
 " https://github.com/awesome-streamers/awesome-streamerrc/blob/master/ThePrimeagen/init.vim
-" Remove whitespace
+" remove whitespace
 fun! TrimWhitespace()
     let l:save = winsaveview()
     keeppatterns %s/\s\+$//e
     call winrestview(l:save)
 endfun
 
-" ----- Appearance -----
-colorscheme gruvbox
-let g:gruvbox_contrast_dark = 'hard'
-set background=dark
-syntax on
-filetype plugin indent on
-
-" ----- Hotkeys -----
-imap jj <Esc>
-
-map <leader><leader> :bn<cr>
-map <C-s> :up<cr>
-map H ^
-map L $
-map q: :q
-
-nnoremap j gj
-nnoremap k gk
-
-nnoremap <left> :bp<CR>
-nnoremap <right> :bn<CR>
-
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
-
-" Code navigation
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" diagnostics
-nmap <leader>n <Plug>(coc-diagnostic-next)
-nmap <leader>p <Plug>(coc-diagnostic-prev)
-
-" Symbol renaming
-nmap <leader>rn <Plug>(coc-rename)
-
-" Formatting selected code
-xmap <leader>f <Plug>(coc-format-selected)
-nmap <leader>f <Plug>(coc-format-selected)
-
-" actions
-nmap <leader>a :CocAction<CR>
-
-" yanking
-nnoremap <leader>y "+y
-vnoremap <leader>y "+y
-
-" ----- Plugin Settings -----
-" haskell-vim
+" Plugin Settings
+" haskell
 let g:haskell_classic_highlighting = 1
 let g:haskell_enable_quantification = 1
 let g:haskell_enable_recursivedo = 1
@@ -164,32 +148,24 @@ let g:haskell_indent_if = 2
 let g:haskell_indent_before_where = 2
 let g:haskell_indent_case_alternative = 1
 let g:haskell_indent_let_no_in = 0
-
-" hindent
 let g:hindent_on_save = 0
+let g:ormolu_suppress_stderr=1
 
-" Python
+" python
 let g:python_highlight_all = 1
 
-" NERDTree
-map <C-e> :NERDTreeToggle<CR>
-
-" telescope
-"map <C-f> :lua require('telescope.builtin').find_files()<CR>
-map <C-f> :lua require('telescope.builtin').git_files()<CR>
-nnoremap <leader>/ :lua require('telescope.builtin').grep_string()<CR>
-
-" Rust
+" rust
 let g:rustfmt_autosave = 1
 let g:rustfmt_emit_files = 1
 let g:rustfmt_fail_silently = 0
 
+" telescope
+map <C-f> :lua require('telescope.builtin').git_files()<CR>
+nnoremap <leader>/ :lua require('telescope.builtin').grep_string()<CR>
+
 " https://github.com/jonhoo/configs/blob/master/editor/.config/nvim/init.vim
 " Completion
-" Better display for messages
-" You will have bad experience for diagnostic messages when it's default 4000.
-set updatetime=300
-" Use tab for trigger completion with characters ahead and navigate.
+" Use tab to trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 inoremap <silent><expr> <TAB>
     \ pumvisible() ? "\<C-n>" :
@@ -223,11 +199,3 @@ let g:lightline = {
 
 " Use autocmd to force lightline update
 autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
-
-" ormolu
-let g:ormolu_suppress_stderr=1
-
-" fugitive
-nmap <leader>gs :G<CR>
-nmap <leader>gj :diffget //3<CR>
-nmap <leader>gf :diffget //2<CR>
