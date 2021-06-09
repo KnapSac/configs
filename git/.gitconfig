@@ -19,8 +19,8 @@
   blv      = branch -vv
   rh = reset --hard
 #Remoting
-  p        = push
-  pp       = pull
+  ph       = push
+  pl       = pull
   r        = remote -v
   rls      = remote show
   rp       = remote prune
