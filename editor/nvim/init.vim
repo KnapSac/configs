@@ -123,7 +123,7 @@ nmap <leader>u :MundoToggle<CR>
 :tnoremap jj <C-\><C-n>
 
 " indent with only 2 spaces
-autocmd BufNewFile,BufEnter,BufRead *.hs,*.json,*.ts,*.tsx,*.js,*.jsx set shiftwidth=2
+autocmd BufNewFile,BufEnter,BufRead *.hs,*.json,*.ts,*.tsx,*.js,*.jsx,*.scss,*.css set shiftwidth=2 ff=dos
 
 " file types
 au BufRead,BufNewFile *.tsx set filetype=typescript.tsx
