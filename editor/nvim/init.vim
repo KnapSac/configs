@@ -131,6 +131,7 @@ autocmd BufNewFile,BufEnter,BufRead *.hs,*.json,*.ts,*.tsx,*.js,*.jsx,*.scss,*.c
 " file types
 au BufRead,BufNewFile *.tsx set filetype=typescript.tsx
 au BufRead,BufNewFile *.asm set filetype=masm
+au BufRead,BufNewFile *.rs,*.toml set ff=unix
 
 " https://github.com/awesome-streamers/awesome-streamerrc/blob/master/ThePrimeagen/init.vim
 " remove whitespace
