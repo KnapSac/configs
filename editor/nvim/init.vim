@@ -110,6 +110,9 @@ nmap <leader>a :CocAction<CR>
 nmap <leader>y "+y
 vmap <leader>y "+y
 
+" make Y work as expected
+nnoremap Y y$
+
 " buffer and window mappings
 map <leader><leader> :bn<cr>
 map <C-s> :up<cr>
