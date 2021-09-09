@@ -1,5 +1,4 @@
 New-Alias -Name cdd -Value Set-LocationToDownloads
-New-Alias -Name envvars -Value Show-EnvVars
 New-Alias -Name galias -Value git-alias-prettifier
 New-Alias -Name mods -Value Show-Modifications
 New-Alias -Name n -Value nvim.exe
@@ -9,8 +8,6 @@ New-Alias -Name vs -Value Start-VisualStudio
 New-Alias -Name xserv -Value Start-XServer
 
 New-Alias -Name npmhttps -Value Start-NpmWithHttps
-
-Export-ModuleMember -Alias * -Function *
 
 ### coreutils aliases ###
 Set-Alias -Name base32 -Value Get-base32 -Option AllScope
@@ -64,10 +61,10 @@ Set-Alias -Name seq -Value Get-seq -Option AllScope
 Set-Alias -Name sha1sum -Value Get-sha1sum -Option AllScope
 Set-Alias -Name sha224sum -Value Get-sha224sum -Option AllScope
 Set-Alias -Name sha256sum -Value Get-sha256sum -Option AllScope
-Set-Alias -Name sha3-224sum -Value Get-sha3-224sum -Option AllScope
-Set-Alias -Name sha3-256sum -Value Get-sha3-256sum -Option AllScope
-Set-Alias -Name sha3-384sum -Value Get-sha3-384sum -Option AllScope
-Set-Alias -Name sha3-512sum -Value Get-sha3-512sum -Option AllScope
+Set-Alias -Name sha3_224sum -Value Get-sha3-224sum -Option AllScope
+Set-Alias -Name sha3_256sum -Value Get-sha3-256sum -Option AllScope
+Set-Alias -Name sha3_384sum -Value Get-sha3-384sum -Option AllScope
+Set-Alias -Name sha3_512sum -Value Get-sha3-512sum -Option AllScope
 Set-Alias -Name sha384sum -Value Get-sha384sum -Option AllScope
 Set-Alias -Name sha3sum -Value Get-sha3sum -Option AllScope
 Set-Alias -Name sha512sum -Value Get-sha512sum -Option AllScope
@@ -143,10 +140,10 @@ function Get-seq { coreutils seq $args }
 function Get-sha1sum { coreutils sha1sum $args }
 function Get-sha224sum { coreutils sha224sum $args }
 function Get-sha256sum { coreutils sha256sum $args }
-function Get-sha3-224sum { coreutils sha3-224sum $args }
-function Get-sha3-256sum { coreutils sha3-256sum $args }
-function Get-sha3-384sum { coreutils sha3-384sum $args }
-function Get-sha3-512sum { coreutils sha3-512sum $args }
+function Get-sha3_224sum { coreutils sha3-224sum $args }
+function Get-sha3_256sum { coreutils sha3-256sum $args }
+function Get-sha3_384sum { coreutils sha3-384sum $args }
+function Get-sha3_512sum { coreutils sha3-512sum $args }
 function Get-sha384sum { coreutils sha384sum $args }
 function Get-sha3sum { coreutils sha3sum $args }
 function Get-sha512sum { coreutils sha512sum $args }
@@ -172,3 +169,5 @@ function Get-wc { coreutils wc $args }
 function Get-yes { coreutils yes $args }
 
 ### coreutils aliases ###
+
+Export-ModuleMember -Alias * -Function *
