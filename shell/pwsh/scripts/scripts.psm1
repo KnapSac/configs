@@ -57,25 +57,12 @@ function New-File {
     Out-File -force -FilePath $FileName
 }
 
-function Remove-RecurseForce {
-    Remove-Item -Recurse -Force $args
-}
-
 function Set-LocationToDownloads {
     Set-Location "${Env:USERPROFILE}\Downloads"
 }
 
 function Start-XServer {
     & I:\Utils\VcXsrv\vcxsrv.exe -multiwindow -ac
-}
-
-function Show-EnvVars {
-    cmd /c set
-}
-
-function Get-ProcessWorkingDirectory {
-    $PathInfo = Get-Location
-    $PathInfo.Path
 }
 
 function Start-NpmWithHttps {
