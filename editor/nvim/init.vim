@@ -96,6 +96,7 @@ nmap <leader>gpl :Git pull<CR>
 autocmd Filetype gitcommit setlocal spell tw=72 colorcolumn=73
 
 " code navigation
+nmap <silent> gD <Plug>(coc-declaration)
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
