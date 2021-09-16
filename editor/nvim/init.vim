@@ -69,6 +69,7 @@ set incsearch                        " show current match while searching
 set nohlsearch                       " don't highlight search results after search is finished
 set notimeout                        " disable timeout for finishing a mapping key sequence
 set updatetime=300                   " quicker diagnostic messages
+set termguicolors                    " use 24-bit colors
 
 let mapleader="\<Space>" " set <space> as the leader for mappings
 
