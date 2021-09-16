@@ -1,4 +1,5 @@
 {
+  "diagnostic.messageTarget": "echo",
   "languageserver": {
     "haskell": {
       "command": "haskell-language-server-wrapper",
