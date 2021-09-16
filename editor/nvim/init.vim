@@ -22,10 +22,7 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
 
 " Semantic language support
-"Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/lsp_extensions.nvim'
-Plug 'nvim-lua/completion-nvim'
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 
 " Syntactic language support
 Plug 'alx741/vim-hindent'
@@ -42,8 +39,6 @@ call plug#end()
 
 " General
 lua require("knapsac");
-
-set termguicolors
 
 syntax on                            " enable syntax highlighting
 colorscheme gruvbox                  " use `gruvbox` if possible
@@ -98,6 +93,18 @@ nmap <leader>gc :Git commit<CR>
 nmap <leader>gph :Git push<CR>
 nmap <leader>gpl :Git pull<CR>
 autocmd Filetype gitcommit setlocal spell tw=72 colorcolumn=73
+
+" code navigation
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" code actions
+nmap <leader>n <Plug>(coc-diagnostic-next)
+nmap <leader>p <Plug>(coc-diagnostic-prev)
+nmap <leader>f <Plug>(coc-format-selected)
+nmap <leader>a :CocAction<CR>
 
 " yanking
 nmap <leader>y "+y
@@ -163,88 +170,39 @@ let g:rustfmt_fail_silently = 0
 map <C-f> :lua require('telescope.builtin').git_files()<CR>
 nnoremap <leader>/ :lua require('telescope.builtin').grep_string()<CR>
 
+" https://github.com/jonhoo/configs/blob/master/editor/.config/nvim/init.vim
+" Completion
+" Use tab to trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+    \ pumvisible() ? "\<C-n>" :
+    \ <SID>check_back_space() ? "\<TAB>" :
+    \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+" Use <c-.> to trigger completion.
+inoremap <silent><expr> <c-.> coc#refresh()
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+" inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" Or use `complete_info` if your vim support it, like:
+inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+
 " Lightline
 let g:lightline = {
       \ 'colorscheme': 'powerline',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \             [ 'gitbranch', 'cocstatus', 'readonly', 'filename', 'modified' ] ]
       \ },
       \ 'component_function': {
       \   'gitbranch': 'FugitiveHead',
+      \   'cocstatus': 'coc#status'
       \ },
       \ }
 
-set completeopt=menuone,noinsert,noselect
-let g:completion_enable_auto_popup = 1
-" let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
-
-inoremap <expr> <Tab>   pumVisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumVisible() ? "\<C-p>" : "\<S-Tab>"
-
-imap <Tab> <Plug>(completion_smart_tab)
-imap <S-Tab> <Plug>(completion_smart_s_tab)
-
-" configure LSP
-lua << EOF
-local lspconfig = require('lspconfig')
-
-local on_attach = function(client, bufnr)
-  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr,...) end
-  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr,...) end
-
-  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-  -- mappings
-  local opts = { noremap = true, silent = true }
-
-  buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  buf_set_keymap('n', 'gy', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  buf_set_keymap('n', '<Space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-  buf_set_keymap('n', '<Space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-  buf_set_keymap('n', '<Space>a', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  buf_set_keymap('n', '<Space>n', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-  buf_set_keymap('n', '<Space>p', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-
-  require'completion'.on_attach(client)
-end
-
-local servers = { 'rust_analyzer' }
-for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup{
-    on_attach = on_attach,
-    tools = {
-      autoSetHints = false,
-      hover_with_actions = false,
-      inlay_hints = {
-        parameter_hints_prefix = "> ",
-        other_hints_prefix = "< ",
-      },
-    },
-    server = {
-      settings = {
-        ["rust-analyzer"] = {
-          checkOnSave =  {
-            command = "clippy",
-          }
-        },
-      },
-    },
-    flags = {
-      debounce_text_changes = 150,
-    },
---    handlers = {
---      ["textDocument/publishDiagnostics"] = vim.lsp.with(
---        vim.lsp.diagnostic.on_publish_diagnostics, {
---          update_in_insert = true,
---        }
---      ),
---    },
-  }
-end
-EOF
+" Use autocmd to force lightline update
+autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
