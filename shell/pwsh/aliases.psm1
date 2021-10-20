@@ -8,6 +8,7 @@ New-Alias -Name vs -Value Start-VisualStudio
 New-Alias -Name xserv -Value Start-XServer
 
 New-Alias -Name npmhttps -Value Start-NpmWithHttps
+New-Alias -Name note -Value Start-NvimWithNotes
 
 ### coreutils aliases ###
 Set-Alias -Name base32 -Value Get-base32 -Option AllScope

@@ -39,5 +39,6 @@
   "todohighlight.defaultStyle": {
     "color": "#d65d0e",
     "backgroundColor": ""
-  }
+  },
+  "vscode-edge-devtools.mirrorEdits": true
 }

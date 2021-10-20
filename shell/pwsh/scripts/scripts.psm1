@@ -63,3 +63,7 @@ function Start-XServer {
 function Start-NpmWithHttps {
     cmd /c "set HTTPS=true&&npm start"
 }
+
+function Start-NvimWithNotes {
+    nvim + $Notes
+}
