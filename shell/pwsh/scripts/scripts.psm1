@@ -67,3 +67,15 @@ function Start-NpmWithHttps {
 function Start-NvimWithNotes {
     nvim + $Notes
 }
+
+function Get-AssemblyInfo {
+    param(
+        [parameter (Mandatory = $true)]
+        [String]$AssemblyName
+    )
+
+    $CurrentDir = Get-Location
+    $FullPath = Join-Path -Path $CurrentDir -ChildPath $AssemblyName -Resolve
+    $AssemblyInfo = [Reflection.AssemblyName]::GetAssemblyName($FullPath)
+    Write-Host $AssemblyInfo
+}
