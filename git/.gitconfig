@@ -33,6 +33,7 @@
   llm = log --graph --decorate --oneline -30 --no-merges
 #General
   alias    = config --get-regexp ^alias\\.
+  root     = rev-parse --show-toplevel
 [core]
   editor = nvim
   whitespace = cr-at-eol

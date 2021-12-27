@@ -15,12 +15,9 @@ function Show-Log {
 }
 
 function Show-Modifications {
-    if (Test-Path ".\.git" -PathType Container) {
-        TortoiseGitProc.exe /command:repostatus /path:.
-    } elseif (Test-Path ".\.svn" -PathType Container) {
-        TortoiseProc.exe /command:repostatus /path:.
-    } else {
-        Write-Output "This directory is not a Git or SVN repository"
+    $GitRepoRootDir = git root
+    if ($?) {
+        TortoiseGitProc.exe /command:repostatus /path:$GitRepoRootDir
     }
 }
 
