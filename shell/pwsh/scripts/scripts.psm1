@@ -76,3 +76,12 @@ function Get-AssemblyInfo {
     $AssemblyInfo = [Reflection.AssemblyName]::GetAssemblyName($FullPath)
     Write-Host $AssemblyInfo
 }
+
+function Get-CmdLocation {
+    param(
+        [parameter (Mandatory = $true)]
+        [String]$CmdName
+    )
+
+    Get-Command $CmdName | Select -ExpandProperty Source
+}
