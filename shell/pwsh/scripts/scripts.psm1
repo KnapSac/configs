@@ -15,9 +15,23 @@ function Show-Log {
 }
 
 function Show-Modifications {
-    $GitRepoRootDir = git root
-    if ($?) {
-        TortoiseGitProc.exe /command:repostatus /path:$GitRepoRootDir
+    param (
+        [parameter (Mandatory = $False)]
+        [String]$Path = ""
+    )
+    if ($Path -eq "") {
+        $GitRepoRootDir = git root
+        if ($?) {
+            # Include all staged files, this ensures we see changed all files in the repo.
+            Set-ItemProperty -Path HKCU:\SOFTWARE\TortoiseGit\TortoiseProc -Name ChangedFilesIncludeStaged -Value $True
+            TortoiseGitProc.exe /command:repostatus /path:$GitRepoRootDir
+        }
+    } else {
+        # Don't include all staged file is the repo, this ensures we only see the changes from the
+        # current folder and below.
+        Set-ItemProperty -Path HKCU:\SOFTWARE\TortoiseGit\TortoiseProc -Name ChangedFilesIncludeStaged -Value $False
+
+        TortoiseGitProc.exe /command:repostatus /path:$Path
     }
 }
 
