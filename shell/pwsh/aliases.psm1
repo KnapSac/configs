@@ -1,5 +1,6 @@
 New-Alias -Name cdd -Value Set-LocationToDownloads
 New-Alias -Name galias -Value git-alias-prettifier
+New-Alias -Name lines -Value Get-LineCount
 New-Alias -Name mods -Value Show-Modifications
 New-Alias -Name n -Value nvim.exe
 New-Alias -Name touch -Value New-File

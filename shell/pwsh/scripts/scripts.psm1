@@ -99,3 +99,7 @@ function Get-CmdLocation {
 
     Get-Command $CmdName | Select -ExpandProperty Source
 }
+
+function Get-LineCount {
+    $Input | Measure-Object | Select -ExpandProperty Count
+}
