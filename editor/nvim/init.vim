@@ -55,7 +55,7 @@ set undofile                         " store undo info in a file
 set undodir=~/.vimdid                " where to store undo info
 set autoindent                       " copy indent from previous line
 set smartindent                      " automatically indent
-set shiftwidth=4                     " number of spaces to use for indneting
+set shiftwidth=4                     " number of spaces to use for indenting
 set softtabstop=4                    " number of spaces to use when inserting a tab
 set tabstop=4                        " show tabs as 4 spaces
 set expandtab                        " convert tabs into spaces
