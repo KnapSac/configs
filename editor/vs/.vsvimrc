@@ -3,8 +3,6 @@ let mapleader="\<Space>" " set <space> as the leader for mappings
 set relativenumber                   " show relative line numbers
 set number                           " show line numbers
 set autoindent                       " copy indent from previous line
-set smartindent                      " automatically indent
-set colorcolumn=100                  " show the colorcolumn at column 100
 set textwidth=100                    " wrap lines after 100 characters
 set ignorecase                       " search case-insensitively...
 set smartcase                        " ...unless uppercase characters are used
