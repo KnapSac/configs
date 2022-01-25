@@ -25,7 +25,6 @@ Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 
 " Syntactic language support
-Plug 'alx741/vim-hindent'
 Plug 'cespare/vim-toml'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'neovimhaskell/haskell-vim'
@@ -161,8 +160,8 @@ let g:haskell_indent_if = 2
 let g:haskell_indent_before_where = 2
 let g:haskell_indent_case_alternative = 1
 let g:haskell_indent_let_no_in = 0
-let g:hindent_on_save = 0
 let g:ormolu_suppress_stderr=1
+let g:ormolu_disable=1
 
 " python
 let g:python_highlight_all = 1
