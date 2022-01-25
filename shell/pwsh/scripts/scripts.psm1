@@ -103,3 +103,7 @@ function Get-CmdLocation {
 function Get-LineCount {
     $Input | Measure-Object | Select -ExpandProperty Count
 }
+
+function Get-ExaLl {
+    exa -l
+}
