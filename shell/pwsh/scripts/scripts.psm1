@@ -105,5 +105,5 @@ function Get-LineCount {
 }
 
 function Get-ExaLl {
-    exa -l
+    exa -l $args
 }
