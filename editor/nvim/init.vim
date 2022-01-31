@@ -172,7 +172,7 @@ let g:rustfmt_emit_files = 1
 let g:rustfmt_fail_silently = 0
 
 " telescope
-map <C-f> :lua require('telescope.builtin').git_files()<CR>
+map <C-f> :lua require('telescope.builtin').find_files()<CR>
 nnoremap <leader>/ :lua require('telescope.builtin').grep_string()<CR>
 
 " https://github.com/jonhoo/configs/blob/master/editor/.config/nvim/init.vim
