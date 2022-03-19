@@ -27,7 +27,7 @@ function Show-Modifications {
             TortoiseGitProc.exe /command:repostatus /path:$GitRepoRootDir
         }
     } else {
-        # Don't include all staged file is the repo, this ensures we only see the changes from the
+        # Don't include all staged files in the repo, this ensures we only see the changes from the
         # current folder and below.
         Set-ItemProperty -Path HKCU:\SOFTWARE\TortoiseGit\TortoiseProc -Name ChangedFilesIncludeStaged -Value $False
 
@@ -41,6 +41,7 @@ function Start-VisualStudio {
     )
 
     $VsPath = "${Env:ProgramFiles(x86)}\Microsoft Visual Studio\2019\Professional\Common7\IDE\devenv.exe"
+    #$VsPath = "C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE\devenv.exe"
 
     if ($Solution) {
         Start-Process -FilePath $VsPath -ArgumentList $Solution -Verb RunAs
@@ -65,10 +66,6 @@ function New-File {
 
 function Set-LocationToDownloads {
     Set-Location "${Env:USERPROFILE}\Downloads"
-}
-
-function Start-XServer {
-    & I:\Utils\VcXsrv\vcxsrv.exe -multiwindow -ac
 }
 
 function Start-NpmWithHttps {

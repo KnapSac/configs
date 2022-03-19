@@ -8,7 +8,6 @@ New-Alias -Name touch -Value New-File
 New-Alias -Name upvim -Value Update-NeoVim
 New-Alias -Name vs -Value Start-VisualStudio
 New-Alias -Name which -Value Get-CmdLocation
-New-Alias -Name xserv -Value Start-XServer
 
 New-Alias -Name npmhttps -Value Start-NpmWithHttps
 New-Alias -Name note -Value Start-NvimWithNotes
