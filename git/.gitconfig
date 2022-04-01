@@ -20,6 +20,7 @@
   rh = reset --hard
 #Remoting
   ph       = push
+  phf      = push --force-with-lease
   pl       = pull
   r        = remote -v
   rls      = remote show
