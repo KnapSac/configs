@@ -134,6 +134,7 @@ autocmd BufNewFile,BufEnter,BufRead *.hs,*.ino set shiftwidth=2 ff=unix
 autocmd BufNewFile,BufEnter,BufRead *.cs set nofixendofline
 
 " file types
+au BufRead,BufNewFile *.pl set filetype=prolog
 au BufRead,BufNewFile *.tsx set filetype=typescript.tsx
 au BufRead,BufNewFile *.asm set filetype=masm
 au BufRead,BufNewFile *.rs,*.toml set ff=unix
