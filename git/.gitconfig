@@ -9,7 +9,7 @@
   cam      = commit -am
   a        = add
   aa       = add .
-  unstage  = reset HEAD --
+  unstage  = restore --staged
 #Branching
   co       = checkout
   br       = branch
