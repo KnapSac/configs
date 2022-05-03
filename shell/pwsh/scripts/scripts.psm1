@@ -40,8 +40,7 @@ function Start-VisualStudio {
         [String]$Solution = ""
     )
 
-    $VsPath = "${Env:ProgramFiles(x86)}\Microsoft Visual Studio\2019\Professional\Common7\IDE\devenv.exe"
-    #$VsPath = "C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE\devenv.exe"
+    $VsPath = "C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE\devenv.exe"
 
     if ($Solution) {
         Start-Process -FilePath $VsPath -ArgumentList $Solution -Verb RunAs
