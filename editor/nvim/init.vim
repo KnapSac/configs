@@ -15,7 +15,10 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 
-" telescope
+" Treesitter
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+" Telescope
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
@@ -25,14 +28,10 @@ Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 
 " Syntactic language support
-Plug 'cespare/vim-toml'
-Plug 'maxmellon/vim-jsx-pretty'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'PProvost/vim-ps1'
 Plug 'rust-lang/rust.vim'
 Plug 'sdiehl/vim-ormolu'
-Plug 'stephpy/vim-yaml'
-Plug 'vim-python/python-syntax'
 
 call plug#end()
 
