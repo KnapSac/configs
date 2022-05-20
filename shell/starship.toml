@@ -4,9 +4,6 @@ $character'''
 
 add_newline = false
 
-[character]
-success_symbol = "[>](bold green)"
-
 [time]
 disabled = false
 format = "[$time](#add8e6)"
