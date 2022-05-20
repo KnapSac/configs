@@ -1,11 +1,3 @@
-function Set-PoshGitSettings {
-    $GitPromptSettings.DefaultPromptPrefix.Text = '[$(Get-Date -Format t)] '
-    $GitPromptSettings.DefaultPromptPrefix.ForegroundColor = 'LightBlue'
-    $GitPromptSettings.DefaultPromptPath.ForegroundColor = 'Orange'
-    $GitPromptSettings.DefaultPromptBeforeSuffix.Text = '`n'
-    $GitPromptSettings.DefaultPromptAbbreviateGitDirectory = $True
-}
-
 function Show-Log {
     if (Test-Path ".\.svn" -PathType Container) {
         TortoiseProc.exe /command:log /path:.

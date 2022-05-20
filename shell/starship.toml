@@ -1,0 +1,31 @@
+format = '''
+$time $directory ([\[$git_branch$git_commit $git_state$git_metrics $git_status\]](bold yellow))
+$character'''
+
+add_newline = false
+
+[character]
+success_symbol = "[>](bold green)"
+
+[time]
+disabled = false
+format = "[$time](#add8e6)"
+time_format = "[%H:%M]"
+
+[directory]
+format = "[$path](bold yellow)"
+truncation_length = 0
+
+[git_branch]
+format = "[$branch](bright-cyan)"
+
+[git_commit]
+format = "[@$hash]($style)"
+only_detached = false
+
+[git_status]
+format = '([$all_status$ahead_behind]($style))'
+
+[git_metrics]
+disabled = false
+format = '([+$added]($added_style))([-$deleted]($deleted_style))'
