@@ -20,6 +20,7 @@
   rh = reset --hard
 #Remoting
   ph       = push
+  phu      = push -u origin HEAD
   phf      = push --force-with-lease
   pl       = pull
   r        = remote -v
