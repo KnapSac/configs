@@ -20,6 +20,7 @@ require'nvim-treesitter.configs'.setup {
         "lua",
         "vim",
         "yaml",
+        "proto",
     },
     sync_install = false,
 
