@@ -22,7 +22,7 @@
   wl = worktree list
   wnew = "!f() { git worktree add --no-track -b $1 $1; }; f"
   wadd = "!f() { git fetch --prune; git worktree add $1 $1; }; f"
-  wrm = worktree remove
+  wrm = "!f() { git worktree remove $1; git branch -d $1; }; f"
 #Remoting
   ph       = push
   phu      = push -u origin HEAD
