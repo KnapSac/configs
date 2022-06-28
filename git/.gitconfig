@@ -18,6 +18,11 @@
   bl       = branch -v
   blv      = branch -vv
   rh = reset --hard
+#Worktrees
+  wl = worktree list
+  wnew = "!f() { git worktree add --no-track -b $1 $1; }; f"
+  wadd = "!f() { git fetch --prune; git worktree add $1 $1; }; f"
+  wrm = worktree remove
 #Remoting
   ph       = push
   phu      = push -u origin HEAD
