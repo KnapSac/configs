@@ -2,6 +2,8 @@ format = '''
 $time $directory ([\[$git_branch$git_commit( ($git_state$git_metrics )$git_status)\]](bold yellow))
 $character'''
 
+command_timeout = 1000
+
 add_newline = false
 
 [time]
