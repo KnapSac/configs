@@ -95,3 +95,8 @@ function Get-LineCount {
 function Get-ExaLl {
     exa -l $args
 }
+
+function Enable-GrpcDebugging {
+    $env:GRPC_VERBOSITY = "DEBUG"
+    $env:GRPC_TRACE = "call_error"
+}
