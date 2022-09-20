@@ -31,6 +31,8 @@
   r        = remote -v
   rls      = remote show
   rp       = remote prune
+#Rebasing
+  rc       = rebase --continue
 #Checking history
   last     = log -1 HEAD
   rl       = reflog
