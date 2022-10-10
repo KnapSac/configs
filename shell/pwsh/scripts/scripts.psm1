@@ -67,6 +67,14 @@ function Start-NvimWithNotes {
     nvim + $Notes
 }
 
+function Start-NvimWithTodos {
+    nvim + $Todos
+}
+
+function Show-Todos {
+    glow $Todos
+}
+
 function Get-AssemblyInfo {
     param(
         [parameter (Mandatory = $true)]

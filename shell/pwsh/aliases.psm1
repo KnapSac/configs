@@ -11,5 +11,7 @@ New-Alias -Name which -Value Get-CmdLocation
 
 New-Alias -Name npmhttps -Value Start-NpmWithHttps
 New-Alias -Name note -Value Start-NvimWithNotes
+New-Alias -Name todo -Value Start-NvimWithTodos
+New-Alias -Name lstodo -Value Show-Todos
 
 Export-ModuleMember -Alias * -Function *
