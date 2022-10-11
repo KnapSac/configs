@@ -1,12 +1,4 @@
-function Show-Log {
-    if (Test-Path ".\.svn" -PathType Container) {
-        TortoiseProc.exe /command:log /path:.
-    } else {
-        Write-Output "This directory is not a SVN repository"
-    }
-}
-
-function Show-Modifications {
+function mods {
     param (
         [parameter (Mandatory = $False)]
         [String]$Path = ""
@@ -27,7 +19,7 @@ function Show-Modifications {
     }
 }
 
-function Start-VisualStudio {
+function vs {
     param(
         [String]$Solution = ""
     )
@@ -42,7 +34,7 @@ function Start-VisualStudio {
     }
 }
 
-function Update-NeoVim {
+function upvim {
     nvim +PlugInstall +qa
 }
 
@@ -55,23 +47,23 @@ function New-File {
     Out-File -force -FilePath $FileName
 }
 
-function Set-LocationToDownloads {
+function cdd {
     Set-Location "${Env:USERPROFILE}\Downloads"
 }
 
-function Start-NpmWithHttps {
+function npmhttps {
     cmd /c "set HTTPS=true&&npm start"
 }
 
-function Start-NvimWithNotes {
+function note {
     nvim + $Notes
 }
 
-function Start-NvimWithTodos {
+function todo {
     nvim + $Todos
 }
 
-function Show-Todos {
+function lstodo {
     glow $Todos
 }
 
@@ -87,7 +79,7 @@ function Get-AssemblyInfo {
     Write-Host $AssemblyInfo
 }
 
-function Get-CmdLocation {
+function which {
     param(
         [parameter (Mandatory = $true)]
         [String]$CmdName
@@ -96,11 +88,11 @@ function Get-CmdLocation {
     Get-Command $CmdName | Select -ExpandProperty Source
 }
 
-function Get-LineCount {
+function lines {
     $Input | Measure-Object | Select -ExpandProperty Count
 }
 
-function Get-ExaLl {
+function ll {
     exa -l $args
 }
 
