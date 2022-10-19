@@ -28,7 +28,8 @@
     "typescript",
     "typscriptreact",
     "typescript.tsx",
-    "json"
+    "json",
+    "html"
   ],
   "typescript.suggest.autoImports": true,
   "eslint.filetypes": [
