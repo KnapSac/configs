@@ -26,7 +26,7 @@ vim.opt.colorcolumn = "100"
 
 -- Store undo info in `~/.vimdid`
 vim.opt.undofile = true
-vim.opt.undodir = ".vimdid"
+vim.opt.undodir = os.getenv("HOME") .. "/.vimdid"
 vim.opt.swapfile = false
 vim.opt.backup = false
 
