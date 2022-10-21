@@ -12,8 +12,8 @@ nnoremap("<leader>w", ":w<CR>")
 inoremap("jj", "<Esc>")
 
 -- Better yanking
-nnoremap("<leadery", "\"+y")
-vnoremap("<leadery", "\"+y")
+nnoremap("<leader>y", "\"+y")
+vnoremap("<leader>y", "\"+y")
 
 -- Telescope
 nnoremap("<C-f>", function()
