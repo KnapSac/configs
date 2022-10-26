@@ -1,14 +1,18 @@
-return require("packer").startup(function()
+return require("packer").startup(function(use)
     -- Packer can manage itself
     use("wbthomason/packer.nvim")
 
     -- Visual enhancements
-    use("itchyny/lightline.vim")
+    use("nvim-lualine/lualine.nvim")
     use("morhetz/gruvbox")
     use("machakann/vim-highlightedyank")
 
     -- General
     use("tpope/vim-fugitive")
+    use("neovim/nvim-lspconfig")
+    use("hrsh7th/cmp-nvim-lsp")
+    use("hrsh7th/nvim-cmp")
+    use("j-hui/fidget.nvim")
 
     -- Treesitter
     use("nvim-treesitter/nvim-treesitter", {
