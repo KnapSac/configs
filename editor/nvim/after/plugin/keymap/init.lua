@@ -29,3 +29,7 @@ nnoremap("<leader>gs", ":Git<CR>")
 nnoremap("<leader>gc", ":Git commit<CR>")
 nnoremap("<leader>gph", ":Git push<CR>")
 nnoremap("<leader>gpl", ":Git pull<CR>")
+
+-- Easier navigation
+nnoremap("<left>", ":bprev<CR>")
+nnoremap("<right>", ":bnext<CR>")
