@@ -74,25 +74,35 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  ["cmp-buffer"] = {
+    loaded = true,
+    path = "C:\\Users\\cverhaar\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\cmp-buffer",
+    url = "https://github.com/hrsh7th/cmp-buffer"
+  },
   ["cmp-nvim-lsp"] = {
     loaded = true,
     path = "C:\\Users\\cverhaar\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\cmp-nvim-lsp",
     url = "https://github.com/hrsh7th/cmp-nvim-lsp"
+  },
+  ["fidget.nvim"] = {
+    loaded = true,
+    path = "C:\\Users\\cverhaar\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\fidget.nvim",
+    url = "https://github.com/j-hui/fidget.nvim"
+  },
+  ["formatter.nvim"] = {
+    loaded = true,
+    path = "C:\\Users\\cverhaar\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\formatter.nvim",
+    url = "https://github.com/mhartington/formatter.nvim"
   },
   gruvbox = {
     loaded = true,
     path = "C:\\Users\\cverhaar\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\gruvbox",
     url = "https://github.com/morhetz/gruvbox"
   },
-  ["lightline.vim"] = {
+  ["lualine.nvim"] = {
     loaded = true,
-    path = "C:\\Users\\cverhaar\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\lightline.vim",
-    url = "https://github.com/itchyny/lightline.vim"
-  },
-  ["lspkind-nvim"] = {
-    loaded = true,
-    path = "C:\\Users\\cverhaar\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\lspkind-nvim",
-    url = "https://github.com/onsails/lspkind-nvim"
+    path = "C:\\Users\\cverhaar\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\lualine.nvim",
+    url = "https://github.com/nvim-lualine/lualine.nvim"
   },
   ["nvim-cmp"] = {
     loaded = true,

@@ -11,6 +11,21 @@ cmp.setup({
 	mapping = cmp.mapping.preset.insert({
 		["<C-u>"] = cmp.mapping.scroll_docs(-4),
 		["<C-d>"] = cmp.mapping.scroll_docs(4),
+        ["<CR>"] = cmp.mapping.confirm({ select = true }),
+        ["<Tab>"] = function(fallback)
+            if cmp.visible() then
+                cmp.select_next_item()
+            else
+                fallback()
+            end
+        end,
+        ["<S-Tab>"] = function(fallback)
+            if cmp.visible() then
+                cmp.select_prev_item()
+            else
+                fallback()
+            end
+        end,
 	}),
 
 	sources = {
@@ -36,7 +51,12 @@ local function config(_config)
 end
 
 -- Typescript
-require("lspconfig").tsserver.setup(config())
+require("lspconfig").tsserver.setup(config({
+    capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+}))
+
+-- JSON
+require("lspconfig").jsonls.setup(config())
 
 -- C, C++ and variants
 require("lspconfig").ccls.setup(config())
