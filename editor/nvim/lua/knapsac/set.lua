@@ -29,6 +29,13 @@ vim.api.nvim_create_autocmd("BufEnter", {
     end,
 })
 
+vim.api.nvim_create_autocmd("BufWritePre", {
+    pattern = "*",
+    callback = function()
+        vim.lsp.buf.formatting_sync()
+    end
+})
+
 -- Always show the signcolumn
 vim.opt.signcolumn = "yes"
 vim.opt.colorcolumn = "100"
