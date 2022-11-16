@@ -1,14 +1,14 @@
 [alias]
 #Checking current state
-  s        = status
-  ss       = status -s
+  s        = status -sb
+  ss       = status
 #Committing changes
   c        = commit
   cm       = commit -m
   ca       = commit -a
   cam      = commit -am
   a        = add
-  aa       = add .
+  aa       = add --all
   unstage  = restore --staged
 #Branching
   co       = checkout
@@ -32,10 +32,13 @@
   rls      = remote show
   rp       = remote prune
 #Rebasing
-  rc       = rebase --continue
+  rba       = rebase --abort
+  rbc       = rebase --continue
+  rbi       = rebase -i
 #Checking history
   last     = log -1 HEAD
-  rl       = reflog
+  rl       = reflog -30
+  rll       = reflog
   l = log --pretty='%C(yellow)%h%Creset %Cblue%ad%Creset %Cgreen%an%Creset%C(cyan)%d%Creset %s' -30 --date=format:'%d-%m-%y %R'
   lm = log --pretty='%C(yellow)%h%Creset %Cblue%ad%Creset %Cgreen%an%Creset%C(cyan)%d%Creset %s' -30 --no-merges --date=format:'%d-%m-%y %R'
   ll = log --graph --decorate --oneline -30
