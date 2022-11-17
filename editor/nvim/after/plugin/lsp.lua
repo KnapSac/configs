@@ -58,6 +58,9 @@ require("lspconfig").tsserver.setup(config({
 -- JSON
 require("lspconfig").jsonls.setup(config())
 
+-- HTML
+require("lspconfig").html.setup(config())
+
 -- C, C++ and variants
 require("lspconfig").ccls.setup(config())
 
