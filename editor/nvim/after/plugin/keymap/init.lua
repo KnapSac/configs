@@ -40,6 +40,9 @@ nnoremap("gi", function()
     require("telescope.builtin").lsp_implementations()
 end)
 
+-- Formatting
+nnoremap("<leader>f", ":FormatWrite<CR>")
+
 -- Vim fugitive mappings
 nnoremap("<leader>gb", ":Git blame<CR>")
 nnoremap("<leader>gs", ":Git<CR>")
