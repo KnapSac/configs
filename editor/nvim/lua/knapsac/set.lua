@@ -51,3 +51,7 @@ vim.opt.updatetime = 50
 
 -- Map leader to ` `
 vim.g.mapleader = " "
+
+-- Netrw
+vim.g.netrw_liststyle = 3
+vim.g.netrw_banner = 0

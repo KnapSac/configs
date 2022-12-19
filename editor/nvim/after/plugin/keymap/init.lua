@@ -15,6 +15,11 @@ inoremap("jj", "<Esc>")
 nnoremap("<leader>y", "\"+y")
 vnoremap("<leader>y", "\"+y")
 
+-- Netrw
+nnoremap("<leader>pf", function()
+    vim.cmd [[Lexplore!25]]
+end)
+
 -- Telescope
 nnoremap("<C-f>", function()
     require("telescope.builtin").find_files()
