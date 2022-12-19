@@ -2,12 +2,18 @@
 vim.opt.number = true
 vim.opt.relativenumber = true
 
+-- Colorscheme
+vim.g.gruvbox_contrast_dark = 'hard'
+vim.opt.background = 'dark'
+vim.cmd.colorscheme('gruvbox')
+
 -- General
 vim.opt.autoindent = true
 vim.opt.smartindent = true
 vim.opt.termguicolors = true
 vim.opt.errorbells = false
 vim.opt.textwidth = 100
+vim.opt.scrolloff = 8
 
 -- Search
 vim.opt.hlsearch = false
@@ -30,12 +36,12 @@ vim.api.nvim_create_autocmd("BufEnter", {
 })
 
 -- Always show the signcolumn
-vim.opt.signcolumn = "yes"
-vim.opt.colorcolumn = "100"
+vim.opt.signcolumn = 'yes'
+vim.opt.colorcolumn = '100'
 
 -- Store undo info in `~/.vimdid`
 vim.opt.undofile = true
-vim.opt.undodir = os.getenv("HOME") .. "/.vimdid"
+vim.opt.undodir = os.getenv('HOME') .. '/.vimdid'
 vim.opt.swapfile = false
 vim.opt.backup = false
 

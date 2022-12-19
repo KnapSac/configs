@@ -1,13 +1,13 @@
-local Remap = require("knapsac.keymap")
-local nnoremap = Remap.nnoremap
-local inoremap = Remap.inoremap
-
-local sumneko_root_path = "I:/Utils/sumneko"
-local sumneko_binary = sumneko_root_path .. "/bin/lua-language-server"
-
 -- Setup nvim-cmp.
-local cmp = require("cmp")
+local cmp = require 'cmp'
+local luasnip = require 'luasnip'
+
 cmp.setup({
+    snippet = {
+        expand = function(Args)
+            luasnip.lsp_expand(args.body)
+        end,
+    },
     mapping = cmp.mapping.preset.insert({
         ["<C-u>"] = cmp.mapping.scroll_docs(-4),
         ["<C-d>"] = cmp.mapping.scroll_docs(4),
@@ -29,87 +29,124 @@ cmp.setup({
     }),
 
     sources = {
-        { name = "nvim_lsp" },
-        { name = "buffer" },
+        { name = 'nvim_lsp' },
+        { name = 'buffer' },
+        { name = 'luasnip' },
     },
 })
 
-local function config(_config)
-    return vim.tbl_deep_extend("force", {
-        on_attach = function()
-            nnoremap("gd", function() vim.lsp.buf.definition() end)
-            nnoremap("K", function() vim.lsp.buf.hover() end)
-            nnoremap("<leader>ws", function() vim.lsp.buf.workspace_symbol() end)
-            nnoremap("<leader>d", function() vim.diagnostic.open_float() end)
-            nnoremap("[d", function() vim.diagnostic.goto_next() end)
-            nnoremap("]d", function() vim.diagnostic.goto_prev() end)
-            nnoremap("<leader>a", function() vim.lsp.buf.code_action() end)
-            nnoremap("<leader>gr", function() vim.lsp.buf.references() end)
-            inoremap("<C-h>", function() vim.lsp.buf.signature_help() end)
-        end,
-    }, _config or {})
+-- LSP settings.
+-- This function gets run when an LSP connects to a particular buffer.
+local on_attach = function(_, bufnr)
+  local nmap = function(keys, func, desc)
+    if desc then
+      desc = 'LSP: ' .. desc
+    end
+
+    vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
+  end
+
+  nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+  nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+
+  nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
+  nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+  nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
+  nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
+  nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+  nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+
+  -- See `:help K` for why this keymap
+  nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
+  nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+
+  -- Create a command `:Format` local to the LSP buffer
+  vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
+    if vim.lsp.buf.format then
+      vim.lsp.buf.format()
+    elseif vim.lsp.buf.formatting then
+      vim.lsp.buf.formatting()
+    end
+  end, { desc = 'Format current buffer with LSP' })
 end
 
--- Typescript
-require("lspconfig").tsserver.setup(config({
-    capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
-}))
+-- Setup mason so it can manage external tooling
+require('mason').setup()
 
--- JSON
-require("lspconfig").jsonls.setup(config())
+-- Enable the following language servers
+local servers = { 'rust_analyzer', 'tsserver', 'sumneko_lua' }
 
--- HTML
-require("lspconfig").html.setup(config())
+-- Ensure the servers above are installed
+require('mason-lspconfig').setup {
+  ensure_installed = servers,
+}
 
--- C, C++ and variants
-require("lspconfig").ccls.setup(config())
+-- nvim-cmp supports additional completion capabilities
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
--- CSS
-require("lspconfig").cssls.setup(config())
+for _, lsp in ipairs(servers) do
+  require('lspconfig')[lsp].setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+  }
+end
 
--- Rust
-require("lspconfig").rust_analyzer.setup(config({
-    cmd = { "rustup", "run", "beta", "rust-analyzer" },
-}))
+-- Turn on lsp status information
+require('fidget').setup()
 
 -- Lua
-require("lspconfig").sumneko_lua.setup(config({
-    cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
+require("lspconfig").sumneko_lua.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
     settings = {
         Lua = {
             runtime = {
                 -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-                version = "LuaJIT",
+                version = 'LuaJIT',
                 -- Setup your lua path
-                path = vim.split(package.path, ";"),
+                path = vim.split(package.path, ';'),
             },
             diagnostics = {
                 -- Get the language server to recognize the `vim` global
-                globals = { "vim" },
+                globals = { 'vim' },
             },
             workspace = {
-                -- Make the server aware of Neovim runtime files
-                library = {
-                    [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                    [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
-                },
+                library = vim.api.nvim_get_runtime_file('', true),
+                checkThirdParty = false,
             },
+            telemetry = { enable = false },
         },
     },
-}))
+}
 
-require("formatter").setup {
-    logging = true,
-    log_level = vim.log.levels.WARN,
-    filetype = {
-        lua = { require("formatter.filetypes.lua").stylua },
-        markdown = { require("formatter.filetypes.markdown").prettier },
-        html = { require("formatter.filetypes.html").prettier },
-        json = { require("formatter.filetypes.json").prettier },
-        javascript = { require("formatter.filetypes.javascript").prettier },
-        javascriptreact = { require("formatter.filetypes.javascriptreact").prettier },
-        typescript = { require("formatter.filetypes.typescript").prettier },
-        typescriptreact = { require("formatter.filetypes.typescriptreact").prettier },
-        rust = { require("formatter.filetypes.rust").rustfmt },
-    }
+-- Typescript
+require("lspconfig").tsserver.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+}
+
+-- JSON
+require("lspconfig").jsonls.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+}
+
+-- HTML
+require("lspconfig").html.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+}
+
+-- CSS
+require("lspconfig").cssls.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+}
+
+-- Rust
+require("lspconfig").rust_analyzer.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    cmd = { "rustup", "run", "beta", "rust-analyzer" },
 }
