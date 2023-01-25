@@ -1,0 +1,6 @@
+# Be smart about case
+--smart-case
+
+# Custom type for `_magma_.cs` files
+--type-add
+magma:*._magma\.cs
