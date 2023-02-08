@@ -41,6 +41,7 @@ require('packer').startup(function(use)
     use 'morhetz/gruvbox'
     use 'machakann/vim-highlightedyank'
     use 'tpope/vim-fugitive'
+    use 'terrastruct/d2-vim'
 
     -- Treesitter
     use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
