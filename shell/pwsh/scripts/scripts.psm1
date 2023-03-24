@@ -100,3 +100,10 @@ function Enable-GrpcDebugging {
     $env:GRPC_VERBOSITY = "DEBUG"
     $env:GRPC_TRACE = "call_error"
 }
+
+function latest {
+    $CurrentBranchName = git rev-parse --abbrev-ref HEAD
+    git checkout master
+    git pull
+    git branch -d $CurrentBranchName
+}
