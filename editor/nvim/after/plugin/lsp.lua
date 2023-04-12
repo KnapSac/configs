@@ -4,7 +4,7 @@ local luasnip = require 'luasnip'
 
 cmp.setup({
     snippet = {
-        expand = function(Args)
+        expand = function(args)
             luasnip.lsp_expand(args.body)
         end,
     },
@@ -27,7 +27,6 @@ cmp.setup({
             end
         end,
     }),
-
     sources = {
         { name = 'nvim_lsp' },
         { name = 'buffer' },
@@ -37,48 +36,62 @@ cmp.setup({
 
 -- LSP settings.
 -- This function gets run when an LSP connects to a particular buffer.
-local on_attach = function(_, bufnr)
-  local nmap = function(keys, func, desc)
-    if desc then
-      desc = 'LSP: ' .. desc
+local on_attach = function(client, bufnr)
+    local nmap = function(keys, func, desc)
+        if desc then
+            desc = 'LSP: ' .. desc
+        end
+
+        vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
     end
 
-    vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
-  end
+    nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+    nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
-  nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
-  nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+    nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
+    nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+    nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
+    nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
+    nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+    nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
-  nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
-  nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-  nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
-  nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
-  nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-  nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+    -- See `:help K` for why this keymap
+    nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
+    nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
-  -- See `:help K` for why this keymap
-  nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-  nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+    -- Create a command `:Format` local to the LSP buffer
+    vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
+        if vim.lsp.buf.format then
+            vim.lsp.buf.format()
+        elseif vim.lsp.buf.formatting then
+            vim.lsp.buf.formatting()
+        end
+    end, { desc = 'Format current buffer with LSP' })
 
-  -- Create a command `:Format` local to the LSP buffer
-  vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-    if vim.lsp.buf.format then
-      vim.lsp.buf.format()
-    elseif vim.lsp.buf.formatting then
-      vim.lsp.buf.formatting()
+    if client.name == "omnisharp" then
+        client.server_capabilities.semanticTokensProvider.legend = {
+            tokenModifiers = { "static" },
+            tokenTypes = { "comment", "excluded", "identifier", "keyword", "keyword", "number", "operator", "operator",
+                "preprocessor", "string", "whitespace", "text", "static", "preprocessor", "punctuation", "string",
+                "string", "class", "delegate", "enum", "interface", "module", "struct", "typeParameter", "field",
+                "enumMember", "constant", "local", "parameter", "method", "method", "property", "event", "namespace",
+                "label", "xml", "xml", "xml", "xml", "xml", "xml", "xml", "xml", "xml", "xml", "xml", "xml", "xml",
+                "xml", "xml", "xml", "xml", "xml", "xml", "xml", "xml", "regexp", "regexp", "regexp", "regexp", "regexp",
+                "regexp", "regexp", "regexp", "regexp" }
+        }
     end
-  end, { desc = 'Format current buffer with LSP' })
 end
 
 -- Setup mason so it can manage external tooling
 require('mason').setup()
 
 -- Enable the following language servers
-local servers = { 'rust_analyzer', 'tsserver', 'sumneko_lua' }
+local servers = { 'tsserver', 'sumneko_lua', 'rust_analyzer', 'jsonls', 'html', 'cssls', 'pylsp', 'omnisharp',
+    'powershell_es' }
 
 -- Ensure the servers above are installed
 require('mason-lspconfig').setup {
-  ensure_installed = servers,
+    ensure_installed = servers,
 }
 
 -- nvim-cmp supports additional completion capabilities
@@ -86,10 +99,10 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 for _, lsp in ipairs(servers) do
-  require('lspconfig')[lsp].setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-  }
+    require('lspconfig')[lsp].setup {
+        on_attach = on_attach,
+        capabilities = capabilities,
+    }
 end
 
 -- Turn on lsp status information
@@ -120,33 +133,14 @@ require("lspconfig").sumneko_lua.setup {
     },
 }
 
--- Typescript
-require("lspconfig").tsserver.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-}
-
--- JSON
-require("lspconfig").jsonls.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-}
-
--- HTML
-require("lspconfig").html.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-}
-
--- CSS
-require("lspconfig").cssls.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-}
-
 -- Rust
 require("lspconfig").rust_analyzer.setup {
     on_attach = on_attach,
     capabilities = capabilities,
     cmd = { "rustup", "run", "beta", "rust-analyzer" },
 }
+
+-- PowerShell
+require("lspconfig").powershell_es.setup({
+    bundle_path = vim.fn.stdpath("data") .. "/mason/packages/powershell-editor-services/"
+})
