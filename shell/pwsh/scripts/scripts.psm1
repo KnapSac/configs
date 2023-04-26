@@ -1,16 +1,20 @@
-function mods {
+function mods
+{
     param (
         [parameter (Mandatory = $False)]
         [String]$Path = ""
     )
-    if ($Path -eq "") {
+    if ($Path -eq "")
+    {
         $GitRepoRootDir = git root
-        if ($?) {
+        if ($?)
+        {
             # Include all staged files, this ensures we see changed all files in the repo.
             Set-ItemProperty -Path HKCU:\SOFTWARE\TortoiseGit\TortoiseProc -Name ChangedFilesIncludeStaged -Value $True
             TortoiseGitProc.exe /command:repostatus /path:$GitRepoRootDir
         }
-    } else {
+    } else
+    {
         # Don't include all staged files in the repo, this ensures we only see the changes from the
         # current folder and below.
         Set-ItemProperty -Path HKCU:\SOFTWARE\TortoiseGit\TortoiseProc -Name ChangedFilesIncludeStaged -Value $False
@@ -19,26 +23,30 @@ function mods {
     }
 }
 
-function vs {
+function vs
+{
     param(
         [String]$Solution = ""
     )
 
     $VsPath = "C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE\devenv.exe"
 
-    if ($Solution) {
+    if ($Solution)
+    {
         Start-Process -FilePath $VsPath -ArgumentList $Solution -Verb RunAs
-    }
-    else {
+    } else
+    {
         Start-Process -FilePath $VsPath -Verb RunAs
     }
 }
 
-function upvim {
+function upvim
+{
     nvim +PlugInstall +qa
 }
 
-function New-File {
+function New-File
+{
     param (
         [parameter (Mandatory = $true)]
         [String]$FileName
@@ -47,27 +55,33 @@ function New-File {
     Out-File -force -FilePath $FileName
 }
 
-function cdd {
+function cdd
+{
     Set-Location "${Env:USERPROFILE}\Downloads"
 }
 
-function npmhttps {
+function npmhttps
+{
     cmd /c "set HTTPS=true&&npm start"
 }
 
-function note {
+function note
+{
     nvim + $Notes
 }
 
-function todo {
+function todo
+{
     nvim + $Todos
 }
 
-function lstodo {
+function lstodo
+{
     glow $Todos
 }
 
-function Get-AssemblyInfo {
+function Get-AssemblyInfo
+{
     param(
         [parameter (Mandatory = $true)]
         [String]$AssemblyName
@@ -79,31 +93,41 @@ function Get-AssemblyInfo {
     Write-Host $AssemblyInfo
 }
 
-function which {
+function which
+{
     param(
         [parameter (Mandatory = $true)]
         [String]$CmdName
     )
 
-    Get-Command $CmdName | Select -ExpandProperty Source
+    Get-Command $CmdName | Select-Object -ExpandProperty Source
 }
 
-function lines {
-    $Input | Measure-Object | Select -ExpandProperty Count
+function lines
+{
+    $Input | Measure-Object | Select-Object -ExpandProperty Count
 }
 
-function ll {
+function ll
+{
     exa -l $args
 }
 
-function Enable-GrpcDebugging {
+function Enable-GrpcDebugging
+{
     $env:GRPC_VERBOSITY = "DEBUG"
     $env:GRPC_TRACE = "call_error"
 }
 
-function latest {
+function latest
+{
+    param(
+        [parameter (Mandatory = $false)]
+        [String]$BranchName = "master"
+    )
+
     $CurrentBranchName = git rev-parse --abbrev-ref HEAD
-    git checkout master
+    git checkout $BranchName
     git pull
     git branch -d $CurrentBranchName
 }
