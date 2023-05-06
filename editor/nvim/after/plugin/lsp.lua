@@ -91,7 +91,7 @@ end
 require('mason').setup()
 
 -- Enable the following language servers
-local servers = { 'tsserver', 'sumneko_lua', 'rust_analyzer', 'jsonls', 'html', 'cssls', 'pylsp', 'omnisharp',
+local servers = { 'tsserver', 'lua_ls', 'rust_analyzer', 'jsonls', 'html', 'cssls', 'pylsp', 'omnisharp',
     'powershell_es' }
 
 -- Ensure the servers above are installed
@@ -124,7 +124,7 @@ null_ls.setup({
 })
 
 -- Lua
-require("lspconfig").sumneko_lua.setup {
+require("lspconfig").lua_ls.setup {
     on_attach = on_attach,
     capabilities = capabilities,
     settings = {
