@@ -68,6 +68,11 @@ local on_attach = function(client, bufnr)
         end
     end, { desc = 'Format current buffer with LSP' })
 
+    if client.name == "tsserver" then
+        local ns = vim.lsp.diagnostic.get_namespace(client.id)
+        vim.diagnostic.disable(nil, ns)
+    end
+
     if client.name == "omnisharp" then
         client.server_capabilities.semanticTokensProvider.legend = {
             tokenModifiers = { "static" },
@@ -107,6 +112,16 @@ end
 
 -- Turn on lsp status information
 require('fidget').setup()
+
+-- Typescript
+local null_ls = require('null-ls')
+
+null_ls.setup({
+    sources = {
+        null_ls.builtins.formatting.prettierd,
+        null_ls.builtins.diagnostics.eslint_d
+    }
+})
 
 -- Lua
 require("lspconfig").sumneko_lua.setup {

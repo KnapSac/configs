@@ -104,6 +104,11 @@ _G.packer_plugins = {
     path = "C:\\Users\\cverhaar.ELEVATION\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
+  ["d2-vim"] = {
+    loaded = true,
+    path = "C:\\Users\\cverhaar.ELEVATION\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\d2-vim",
+    url = "https://github.com/terrastruct/d2-vim"
+  },
   ["fidget.nvim"] = {
     loaded = true,
     path = "C:\\Users\\cverhaar.ELEVATION\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\fidget.nvim",
@@ -133,6 +138,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "C:\\Users\\cverhaar.ELEVATION\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
+  },
+  ["null-ls.nvim"] = {
+    loaded = true,
+    path = "C:\\Users\\cverhaar.ELEVATION\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\null-ls.nvim",
+    url = "https://github.com/jose-elias-alvarez/null-ls.nvim"
   },
   ["nvim-cmp"] = {
     loaded = true,
