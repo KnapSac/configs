@@ -149,6 +149,11 @@ _G.packer_plugins = {
     path = "C:\\Users\\cverhaar.ELEVATION\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
   },
+  ["nvim-jenkinsfile-linter"] = {
+    loaded = true,
+    path = "C:\\Users\\cverhaar.ELEVATION\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\nvim-jenkinsfile-linter",
+    url = "https://github.com/ckipp01/nvim-jenkinsfile-linter"
+  },
   ["nvim-lspconfig"] = {
     loaded = true,
     path = "C:\\Users\\cverhaar.ELEVATION\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\nvim-lspconfig",

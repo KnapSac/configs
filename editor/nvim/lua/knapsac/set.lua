@@ -37,10 +37,16 @@ vim.api.nvim_create_autocmd("BufEnter", {
 vim.api.nvim_create_autocmd("BufWritePre", {
     callback = function()
         if vim.lsp.buf.format then
-          vim.lsp.buf.format()
+            vim.lsp.buf.format()
         elseif vim.lsp.buf.formatting then
-          vim.lsp.buf.formatting()
+            vim.lsp.buf.formatting()
         end
+    end
+})
+vim.api.nvim_create_autocmd("BufWritePre", {
+    pattern = "Jenkinsfile",
+    callback = function()
+        require("jenkinsfile_linter").validate()
     end
 })
 

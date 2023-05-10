@@ -51,6 +51,8 @@ require('packer').startup(function(use)
 
     use { 'jose-elias-alvarez/null-ls.nvim', requires = { 'nvim-lua/plenary.nvim' } }
 
+    use({ 'ckipp01/nvim-jenkinsfile-linter', requires = { "nvim-lua/plenary.nvim" } })
+
     if is_bootstrap then
         require('packer').sync()
     end
