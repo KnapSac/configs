@@ -43,6 +43,15 @@ vim.api.nvim_create_autocmd("BufWritePre", {
         end
     end
 })
+
+-- Jenkinsfile
+vim.api.nvim_create_autocmd("BufEnter", {
+    pattern = "Jenkinsfile",
+    callback = function()
+        vim.opt.wrap = false
+        vim.opt.formatoptions:remove("t")
+    end
+})
 vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = "Jenkinsfile",
     callback = function()
