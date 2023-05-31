@@ -70,3 +70,7 @@
 
 [diff]
     colorMoved = default
+
+[rebase]
+    autosquash = true
+    updateRefs = true
