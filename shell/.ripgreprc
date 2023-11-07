@@ -3,4 +3,10 @@
 
 # Custom type for `_magma_.cs` files
 --type-add
-magma:*._magma\.cs
+magma:*_magma_.cs
+
+--type-add
+sketch:*.Magma
+
+--type-add
+csproj:*.csproj
