@@ -15,8 +15,11 @@ vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
         if string.find(args.match, 'Directory.Build') then
             ft = 'xml'
         end
-        if string.find(args.match, '.config') then
+        if string.match(args.match, '.config$') then
             ft = 'config'
+        end
+        if string.match(args.match, '.Magma$') then
+            ft = 'xml'
         end
 
         if ft ~= nil then
