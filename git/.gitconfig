@@ -10,6 +10,7 @@
   a        = add
   aa       = add --all
   unstage  = restore --staged
+  amend    = commit -a --amend --no-edit
 #Branching
   co       = checkout
   br       = branch
@@ -71,6 +72,7 @@
 
 [diff]
     colorMoved = default
+    colormovedws = "allow-indentation-change"
 
 [rebase]
     autosquash = true
