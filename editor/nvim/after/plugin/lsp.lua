@@ -72,29 +72,13 @@ local on_attach = function(client, bufnr)
         local ns = vim.lsp.diagnostic.get_namespace(client.id)
         vim.diagnostic.disable(nil, ns)
     end
-
-    if client.name == "omnisharp" then
-        local function toSnakeCase(str)
-            return string.gsub(str, "%s*[- ]%s*", "_")
-        end
-
-        local tokenModifiers = client.server_capabilities.semanticTokensProvider.legend.tokenModifiers
-        for i, v in ipairs(tokenModifiers) do
-            tokenModifiers[i] = toSnakeCase(v)
-        end
-        local tokenTypes = client.server_capabilities.semanticTokensProvider.legend.tokenTypes
-        for i, v in ipairs(tokenTypes) do
-            tokenTypes[i] = toSnakeCase(v)
-        end
-    end
 end
 
 -- Setup mason so it can manage external tooling
 require('mason').setup()
 
 -- Enable the following language servers
-local servers = { 'tsserver', 'lua_ls', 'rust_analyzer', 'jsonls', 'html', 'cssls', 'pylsp', 'omnisharp',
-    'powershell_es' }
+local servers = { 'tsserver', 'lua_ls', 'rust_analyzer', 'jsonls', 'html', 'cssls', 'pylsp', 'powershell_es' }
 
 -- Ensure the servers above are installed
 require('mason-lspconfig').setup {
@@ -112,18 +96,26 @@ for _, lsp in ipairs(servers) do
     }
 end
 
+-- require('knapsac.dictate')
+
+-- require('lspconfig').dictate.setup {
+-- on_attach = on_attach,
+-- capabilities = capabilities,
+-- }
+
 -- Turn on lsp status information
 require('fidget').setup()
 
 -- Typescript
-local null_ls = require('null-ls')
-
-null_ls.setup({
-    sources = {
-        null_ls.builtins.formatting.prettierd,
-        null_ls.builtins.diagnostics.eslint_d
-    }
-})
+-- local null_ls = require('null-ls')
+--
+-- null_ls.setup({
+--     sources = {
+--         null_ls.builtins.formatting.prettierd,
+--         null_ls.builtins.diagnostics.eslint_d
+--     },
+--     root_dir = require("null-ls.utils").root_pattern(".eslintrc.js"),
+-- })
 
 -- Lua
 require("lspconfig").lua_ls.setup {

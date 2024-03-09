@@ -188,6 +188,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "C:\\Users\\cverhaar.ELEVATION\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\vim-highlightedyank",
     url = "https://github.com/machakann/vim-highlightedyank"
+  },
+  ["vim-ungrammar"] = {
+    loaded = true,
+    path = "C:\\Users\\cverhaar.ELEVATION\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\vim-ungrammar",
+    url = "https://github.com/Iron-E/vim-ungrammar"
   }
 }
 
