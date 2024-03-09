@@ -14,6 +14,7 @@ vim.opt.termguicolors = true
 vim.opt.errorbells = false
 vim.opt.textwidth = 100
 vim.opt.scrolloff = 8
+vim.opt.fixendofline = false
 
 -- Search
 vim.opt.hlsearch = false
